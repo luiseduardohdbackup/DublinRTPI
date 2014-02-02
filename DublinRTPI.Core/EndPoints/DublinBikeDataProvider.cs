@@ -7,8 +7,11 @@ namespace DUBLIN_RTPI.Core.EndPoints
 {
 	public class DublinBikeDataProvider : IEndPoint, IEndPointParser
 	{
-		public const string STATIONS = "http://pipes.yahoo.com/pipes/pipe.run?_id=102a8e299735b6de44059c9475c1dde7&_render=json";
-		public const string STATION_DETAILS = "http://pipes.yahoo.com/pipes/pipe.run?_id=102a8e299735b6de44059c9475c1dde7&_render=json"; // GET { station : 37 }
+		public const string BASE_URL = "http://pipes.yahoo.com/pipes/pipe.run";
+		// ?_id=
+		public const string STATIONS = "102a8e299735b6de44059c9475c1dde7";
+		public const string STATION_DETAILS = "102a8e299735b6de44059c9475c1dde7";
+		// &_render=json // GET { station : 37 }
 
 		public Boolean IsDataServiceOnline()
 		{

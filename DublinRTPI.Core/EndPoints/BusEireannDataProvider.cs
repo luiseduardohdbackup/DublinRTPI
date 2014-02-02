@@ -28,7 +28,7 @@ namespace DUBLIN_RTPI.Core.EndPoints
 		public List<Station> GetStationsByRoute(string routeId){
 			throw new NotImplementedException();
 		}
-
+			
 		public Station GetStationDetails(string stationId){
 			throw new NotImplementedException();
 		}

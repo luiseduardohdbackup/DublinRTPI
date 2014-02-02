@@ -3,12 +3,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BCA6FDC9-522D-4C74-B2E0-06332A4E800C}</ProjectGuid>
+    <ProjectGuid>{C8BB59A9-9620-4248-8CC1-1E40A8365B74}</ProjectGuid>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>DUBLIN_RTPI.Core</RootNamespace>
-    <AssemblyName>DUBLIN_RTPI.Core</AssemblyName>
+    <RootNamespace>DublinRTPI.Core</RootNamespace>
+    <AssemblyName>DublinRTPI.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile136</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,34 +30,21 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Net" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.ComponentModel.Composition" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Contracts\IEndPoint.cs" />
+    <Compile Include="Contracts\IEndPointParser.cs" />
+    <Compile Include="DataAccess\GeoLocation.cs" />
+    <Compile Include="DataAccess\HttpClient.cs" />
+    <Compile Include="EndPoints\BusEireannDataProvider.cs" />
+    <Compile Include="EndPoints\DublinBikeDataProvider.cs" />
+    <Compile Include="EndPoints\DublinBussDataProvider.cs" />
+    <Compile Include="EndPoints\IrishRailDataProvider.cs" />
+    <Compile Include="EndPoints\LuasDataProvider.cs" />
     <Compile Include="Entities\Route.cs" />
+    <Compile Include="Entities\ServiceProviderEnum.cs" />
     <Compile Include="Entities\Station.cs" />
     <Compile Include="Entities\TimeUpdate.cs" />
     <Compile Include="Entities\VehicleAvailabilityUpdate.cs" />
-    <Compile Include="Entities\ServiceProviderEnum.cs" />
-    <Compile Include="Contracts\IEndPoint.cs" />
-    <Compile Include="EndPoints\DublinBikeDataProvider.cs" />
-    <Compile Include="EndPoints\LuasDataProvider.cs" />
-    <Compile Include="EndPoints\IrishRailDataProvider.cs" />
-    <Compile Include="DataAccess\HttpClient.cs" />
-    <Compile Include="EndPoints\DublinBussDataProvider.cs" />
-    <Compile Include="Contracts\IEndPointParser.cs" />
-    <Compile Include="EndPoints\BusEireannDataProvider.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="EndPoints\" />
-    <Folder Include="Entities\" />
-    <Folder Include="Contracts\" />
-    <Folder Include="DataAccess\" />
-  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>
