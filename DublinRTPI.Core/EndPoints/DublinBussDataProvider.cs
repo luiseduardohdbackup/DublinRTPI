@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using DUBLIN_RTPI.Core.Entities;
 using DUBLIN_RTPI.Core.Contracs;
 
@@ -13,23 +14,23 @@ namespace DUBLIN_RTPI.Core.EndPoints
 
 		#region IEndPoint
 
-		public Boolean IsDataServiceOnline(){
+		public async Task<Boolean> IsDataServiceOnline(){
 			throw new NotImplementedException();
 		}
 
-		public List<Route> GetRoutes(){
+		public async Task<List<Route>> GetRoutes(){
 			throw new NotImplementedException();
 		}
 
-		public List<Station> GetStations(){
+		public async Task<List<Station>> GetStations(){
 			throw new NotImplementedException();
 		}
 
-		public List<Station> GetStationsByRoute(string routeId){
+		public async Task<List<Station>> GetStationsByRoute(string routeId){
 			throw new NotImplementedException();
 		}
 
-		public Station GetStationDetails(string stationId){
+		public async Task<Station> GetStationDetails(string stationId){
 			throw new NotImplementedException();
 		}
 
@@ -37,19 +38,19 @@ namespace DUBLIN_RTPI.Core.EndPoints
 
 		#region IEndPointParser
 
-		public Route ParseRoute (string json){
+		public async Task<Route> ParseRoute (string json){
 			throw new NotImplementedException();
 		}
 
-		public List<Route> ParseRoutes(string json){
+		public async Task<List<Route>> ParseRoutes(string json){
 			throw new NotImplementedException();
 		}
 
-		public Station ParseStation(string json){
+		public async Task<Station> ParseStation(string json){
 			throw new NotImplementedException();
 		}
 
-		public List<Station> ParseStations(string json){
+		public async Task<List<Station>> ParseStations(string json){
 			throw new NotImplementedException();
 		}
 

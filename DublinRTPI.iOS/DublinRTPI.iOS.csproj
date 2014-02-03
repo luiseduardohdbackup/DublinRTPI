@@ -119,4 +119,10 @@
     <BundleResource Include="Resources\second%402x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\DublinRTPI.Core\DublinRTPI.Core.csproj">
+      <Project>{C8BB59A9-9620-4248-8CC1-1E40A8365B74}</Project>
+      <Name>DublinRTPI.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

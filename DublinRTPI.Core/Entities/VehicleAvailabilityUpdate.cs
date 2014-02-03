@@ -7,6 +7,8 @@ namespace DUBLIN_RTPI.Core.Entities
 		public int Total;
 		public int Available;
 
+		public VehicleAvailabilityUpdate (){}
+
 		public VehicleAvailabilityUpdate (int total, int available)
 		{
 			this.Total = total;
