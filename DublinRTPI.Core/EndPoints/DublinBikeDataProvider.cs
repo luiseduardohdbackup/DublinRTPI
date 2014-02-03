@@ -26,7 +26,7 @@ namespace DUBLIN_RTPI.Core.EndPoints
 		{
 			try {
 				var url = String.Format(
-					"?{0}_id{1}&_render=json", 
+					"{0}?_id={1}&_render=json", 
 					DublinBikeDataProvider.BASE_URL,
 					DublinBikeDataProvider.STATIONS
 				);

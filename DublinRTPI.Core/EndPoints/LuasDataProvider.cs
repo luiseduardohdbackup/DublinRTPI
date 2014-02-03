@@ -29,6 +29,7 @@ namespace DUBLIN_RTPI.Core.EndPoints
 		}
 
 		public async Task<List<Station>> GetStations(){
+			//https://raw.github.com/ower89/TrainPI/master/Content/App/LuasData
 			return new List<Station>();
 		}
 
