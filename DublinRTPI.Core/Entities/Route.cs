@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DUBLIN_RTPI.Core.Entities
+namespace DublinRTPI.Core.Entities
 {
 	public class Route
 	{

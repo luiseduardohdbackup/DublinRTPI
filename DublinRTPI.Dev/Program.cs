@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DUBLIN_RTPI.Core.Entities;
-using DUBLIN_RTPI.Core.Contracs;
-using DUBLIN_RTPI.Core.EndPoints;
+using DublinRTPI.Core;
+using DublinRTPI.Core.Entities;
+using DublinRTPI.Core.Contracs;
 
 namespace DublinRTPI.Dev
 {
@@ -10,25 +10,50 @@ namespace DublinRTPI.Dev
 	{
 		public static void Main (string[] args)
 		{
-			TestBikes();
-			Console.ReadKey();
-			TestRail();
-			Console.ReadKey();
-			TestLuas ();
-			Console.ReadKey();
+			var dataController = new DataController();
+			//MainClass.TestRail(dataController);
+			//MainClass.TestBikes(dataController);
+			MainClass.TestLuas (dataController);
 		}
 
-		public static void TestLuas(){
+		public static void TestLuas(IDataController dataController){
 			Console.WriteLine ("\n\nLUAS:\n");
-			// TODO
+			var stations = dataController.GetStations(ServiceProviderEnum.Luas).Result;
+			foreach (var station in stations) {
+			
+
+				var stationDetails = dataController.GetStationDetails(
+					ServiceProviderEnum.Luas, 
+					station.Id).Result;
+
+				Console.WriteLine(String.Format(
+					"{0} / {1} - [{2},{3}] ",
+					stationDetails.Id,
+					stationDetails.Name,
+					stationDetails.Latitude,
+					stationDetails.Longitude
+				));
+
+				foreach (var timeUpdate in stationDetails.TimeUpdates) {
+					Console.WriteLine(String.Format(
+						"\t{0} - {1} - {2} ",
+						timeUpdate.Traincode,
+						timeUpdate.Destination,
+						timeUpdate.Time
+					));
+				}
+			}
 		}
 
-		public static void TestRail(){
+		public static void TestRail(IDataController dataController){
 			Console.WriteLine ("\n\nIRISH RAIL:\n");
-			var railSource = new IrishRailDataProvider();
-			var stations = railSource.GetStations().Result;
+			var stations = dataController.GetStations(ServiceProviderEnum.IrishRail).Result;
 			foreach (var station in stations) {
-				var stationDetails = railSource.GetStationDetails(station.Id).Result;
+
+				var stationDetails = dataController.GetStationDetails(
+					ServiceProviderEnum.IrishRail, 
+					station.Id).Result;
+
 				Console.WriteLine(String.Format(
 					"{0} / {1} - [{2},{3}] ",
 					stationDetails.Id,
@@ -38,7 +63,7 @@ namespace DublinRTPI.Dev
 				));
 				foreach (var timeUpdate in stationDetails.TimeUpdates) {
 					Console.WriteLine(String.Format(
-						"{0} - {1} - {3} ",
+						"\t{0} - {1} - {2} ",
 						timeUpdate.Traincode,
 						timeUpdate.Destination,
 						timeUpdate.Time
@@ -47,12 +72,15 @@ namespace DublinRTPI.Dev
 			}
 		}
 
-		public static void TestBikes(){
+		public static void TestBikes(IDataController dataController){
 			Console.WriteLine ("\n\nDUBLIN BIKE:\n");
-			var bikeSource = new DublinBikeDataProvider();
-			var stations = bikeSource.GetStations().Result;
+			var stations = dataController.GetStations(ServiceProviderEnum.DublinBike).Result;
 			foreach (var station in stations) {
-				var stationDetails = bikeSource.GetStationDetails(station.Id).Result;
+
+				var stationDetails = dataController.GetStationDetails(
+					ServiceProviderEnum.DublinBike,
+					station.Id).Result;
+
 				Console.WriteLine(String.Format(
 					"{0} / {1} - [{2},{3}] ",
 					stationDetails.Id,

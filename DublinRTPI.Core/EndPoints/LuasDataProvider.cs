@@ -1,81 +1,72 @@
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using DUBLIN_RTPI.Core.Entities;
-using DUBLIN_RTPI.Core.Contracs;
+using DublinRTPI.Core.Entities;
+using DublinRTPI.Core.Contracs;
+using DublinRTPI.Core.DataAccess;
+using DublinRTPI.Core.EndPointParser;
 
-namespace DUBLIN_RTPI.Core.EndPoints
+namespace DublinRTPI.Core.EndPoints
 {
-	public class LuasDataProvider : IEndPoint, IEndPointParser
+	internal class LuasDataProvider : IEndPoint
 	{
-		public const string STATIONS = "/Content/App/LuasData.json";
-		public const string STATION_DETAILS = "http://pipes.yahoo.com/pipes/pipe.run?_id=64aee2afc4e2531bc6ceced68e5a3914&_render=json"; // GET{ get : 'Harcourt' },
+		public const string BASE_URL = "http://pipes.yahoo.com/pipes/pipe.run";
+		public const string STATION_DETAILS = "64aee2afc4e2531bc6ceced68e5a3914";
 
-		public enum Line {
-			Red = 1,
-			Green = 2
+		private HttpClientHelper _httpClient;
+		private IEndPointParser _dataParser;
+
+		public LuasDataProvider() {
+			this._httpClient = new HttpClientHelper();
+			this._dataParser = new LuasDataParser();
 		}
 
 		public async Task<Boolean> IsDataServiceOnline(){
-			throw new NotImplementedException();
-		}
-
-		public async Task<List<Route>> GetRoutes(){
-			return new List<Route>(){
-				new Route(Line.Green.ToString(), "Green Line"),
-				new Route(Line.Red.ToString(), "Red Line")
-			};
-		}
-
-		public async Task<List<Station>> GetStations(){
-			//https://raw.github.com/ower89/TrainPI/master/Content/App/LuasData
-			return new List<Station>();
-		}
-
-		public async Task<List<Station>> GetStationsByRoute(string routeId){
-			try{
-				switch (Int32.Parse(routeId)) {
-
-					case (int)Line.Red:
-					return new List<Station>();
-
-					case (int)Line.Green:
-					return new List<Station>();
-
-					default:
-					return new List<Station>();
-
-				}
+			try {
+				var url = String.Format(
+					"{0}?_id={1}&_render=json&get={2}", 
+					DublinBikeDataProvider.BASE_URL,
+					DublinBikeDataProvider.STATION_DETAILS,
+					"Harcourt"
+				);
+				await this._httpClient.GetJson(url);
+				return true;
 			}
 			catch(Exception ex){
 				Debug.WriteLine(ex.Message);
-				return new List<Station>();
+				return false;
 			}
+		}
+			
+		public Task<List<Route>> GetRoutes(){
+			throw new NotSupportedException ();
+		}
+		public Task<List<Station>> GetStationsByRoute(string routeId){
+			throw new NotSupportedException ();
+		}
+
+		public async Task<List<Station>> GetStations(){
+			return LuasData.STATIONS;
 		}
 
 		public async Task<Station> GetStationDetails(string stationId){
-			return new Station();
+
+			var stations = await GetStations();
+			var station = stations.Where (s => s.Id.ToString().Equals(stationId)).First();
+
+			var url = String.Format(
+				"{0}?_id={1}&_render=json&get={2}", 
+				LuasDataProvider.BASE_URL,
+				LuasDataProvider.STATION_DETAILS,
+				stationId.Replace(" ", "%20").Replace("'", "%27")
+			);
+
+			var json = await this._httpClient.GetJson(url);
+			var details = this._dataParser.ParseStationDetails(json);
+			station.TimeUpdates = details.TimeUpdates;
+			return station;
 		}
-
-		#region IEndPointParser
-
-		public async Task<Route> ParseRoute (string json){
-			throw new NotImplementedException();
-		}
-
-		public async Task<List<Route>> ParseRoutes(string json){
-			throw new NotImplementedException();
-		}
-
-		public async Task<Station> ParseStation(string json){
-			throw new NotImplementedException();
-		}
-
-		public async Task<List<Station>> ParseStations(string json){
-			throw new NotImplementedException();
-		}
-
-		#endregion
 	}
 }

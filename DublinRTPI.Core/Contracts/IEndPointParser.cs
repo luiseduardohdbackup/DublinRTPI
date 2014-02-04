@@ -1,16 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DUBLIN_RTPI.Core.Entities;
-using DUBLIN_RTPI.Core.Contracs;
+using DublinRTPI.Core.Entities;
+using DublinRTPI.Core.Contracs;
 
-namespace DUBLIN_RTPI.Core.Contracs
+namespace DublinRTPI.Core.Contracs
 {
-	public interface IEndPointParser
+	internal interface IEndPointParser
 	{
-		Task<Route> ParseRoute (string json);
-		Task<List<Route>> ParseRoutes(string json);
-		Task<Station> ParseStation(string json);
-		Task<List<Station>> ParseStations(string json);
+		Station ParseStationDetails(string json);
+		Station ParseStation(string json);
+		List<Station> ParseStations(string json);
+		List<Route> ParseRoutes(string json);
+		Route ParseRoute(string json);
+		Route ParseRouteDetails(string json);
 	}
 }

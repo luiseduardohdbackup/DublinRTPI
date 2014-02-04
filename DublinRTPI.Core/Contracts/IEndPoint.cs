@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DUBLIN_RTPI.Core.Entities;
+using DublinRTPI.Core.Entities;
 
-namespace DUBLIN_RTPI.Core.Contracs
+namespace DublinRTPI.Core.Contracs
 {
-	public interface IEndPoint
+	internal interface IEndPoint
 	{
 		Task<Boolean> IsDataServiceOnline();
 		Task<List<Route>> GetRoutes();

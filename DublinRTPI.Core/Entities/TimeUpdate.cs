@@ -1,6 +1,6 @@
 using System;
 
-namespace DUBLIN_RTPI.Core.Entities
+namespace DublinRTPI.Core.Entities
 {
 	public class TimeUpdate
 	{

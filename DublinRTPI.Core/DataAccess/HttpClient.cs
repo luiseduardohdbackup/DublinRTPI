@@ -5,9 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DUBLIN_RTPI.Core.DataAccess
+namespace DublinRTPI.Core.DataAccess
 {
-	public class HttpClientHelper
+	internal class HttpClientHelper
 	{
 	
 		public Task<string> GetJson(string url, Dictionary<string,string> parameters = null){

@@ -1,18 +1,26 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DUBLIN_RTPI.Core.Entities;
-using DUBLIN_RTPI.Core.Contracs;
+using DublinRTPI.Core.Entities;
+using DublinRTPI.Core.Contracs;
+using DublinRTPI.Core.DataAccess;
+using DublinRTPI.Core.EndPointParser;
 
-namespace DUBLIN_RTPI.Core.EndPoints
+namespace DublinRTPI.Core.EndPoints
 {
-	public class DublinBussDataProvider : IEndPoint, IEndPointParser
+	internal class DublinBusDataProvider : IEndPoint
 	{
 		public const string ROUTES = "";
 		public const string STATIONS = "";
 		public const string STATION_DETAILS = "";
 
-		#region IEndPoint
+		private HttpClientHelper _httpClient;
+		private IEndPointParser _dataParser;
+
+		public DublinBusDataProvider() {
+			this._httpClient = new HttpClientHelper();
+			this._dataParser = new DublinBusDataParser();
+		}
 
 		public async Task<Boolean> IsDataServiceOnline(){
 			throw new NotImplementedException();
@@ -34,26 +42,5 @@ namespace DUBLIN_RTPI.Core.EndPoints
 			throw new NotImplementedException();
 		}
 
-		#endregion
-
-		#region IEndPointParser
-
-		public async Task<Route> ParseRoute (string json){
-			throw new NotImplementedException();
-		}
-
-		public async Task<List<Route>> ParseRoutes(string json){
-			throw new NotImplementedException();
-		}
-
-		public async Task<Station> ParseStation(string json){
-			throw new NotImplementedException();
-		}
-
-		public async Task<List<Station>> ParseStations(string json){
-			throw new NotImplementedException();
-		}
-
-		#endregion
 	}
 }

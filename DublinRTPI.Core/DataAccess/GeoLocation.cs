@@ -1,11 +1,9 @@
 using System;
 
-namespace DUBLIN_RTPI.Core.DataAccess
+namespace DublinRTPI.Core.DataAccess
 {
-	public class GeoLocation
+	internal class GeoLocation
 	{
-		public GeoLocation ()
-		{
-		}
+		// TODO
 	}
 }

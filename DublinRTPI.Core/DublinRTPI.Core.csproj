@@ -37,7 +37,6 @@
     <Compile Include="DataAccess\HttpClient.cs" />
     <Compile Include="EndPoints\BusEireannDataProvider.cs" />
     <Compile Include="EndPoints\DublinBikeDataProvider.cs" />
-    <Compile Include="EndPoints\DublinBussDataProvider.cs" />
     <Compile Include="EndPoints\IrishRailDataProvider.cs" />
     <Compile Include="EndPoints\LuasDataProvider.cs" />
     <Compile Include="Entities\Route.cs" />
@@ -45,6 +44,17 @@
     <Compile Include="Entities\Station.cs" />
     <Compile Include="Entities\TimeUpdate.cs" />
     <Compile Include="Entities\VehicleAvailabilityUpdate.cs" />
+    <Compile Include="Contracts\IMapController.cs" />
+    <Compile Include="Entities\MapMarker.cs" />
+    <Compile Include="EndPoints\LuasData.cs" />
+    <Compile Include="EndPointParser\LuasDataParser.cs" />
+    <Compile Include="EndPointParser\IrishRailDataParser.cs" />
+    <Compile Include="EndPointParser\DublinBikeDataParser.cs" />
+    <Compile Include="EndPointParser\BusEireannDataParser.cs" />
+    <Compile Include="EndPoints\DublinBusDataProvider.cs" />
+    <Compile Include="EndPointParser\DublinBusDataParser.cs" />
+    <Compile Include="Contracts\IDataController.cs" />
+    <Compile Include="IDataController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -78,5 +88,8 @@
     <Reference Include="System.Threading.Tasks">
       <HintPath>..\packages\Microsoft.Bcl.1.1.6\lib\portable-net40+win8\System.Threading.Tasks.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="EndPointParser\" />
   </ItemGroup>
 </Project>
