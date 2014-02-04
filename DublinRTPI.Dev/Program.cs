@@ -11,8 +11,8 @@ namespace DublinRTPI.Dev
 		public static void Main (string[] args)
 		{
 			var dataController = new DataController();
-			//MainClass.TestRail(dataController);
-			//MainClass.TestBikes(dataController);
+			MainClass.TestRail(dataController);
+			MainClass.TestBikes(dataController);
 			MainClass.TestLuas (dataController);
 		}
 
@@ -36,8 +36,7 @@ namespace DublinRTPI.Dev
 
 				foreach (var timeUpdate in stationDetails.TimeUpdates) {
 					Console.WriteLine(String.Format(
-						"\t{0} - {1} - {2} ",
-						timeUpdate.Traincode,
+						"\t{0} - {1}",
 						timeUpdate.Destination,
 						timeUpdate.Time
 					));
@@ -61,6 +60,7 @@ namespace DublinRTPI.Dev
 					stationDetails.Latitude,
 					stationDetails.Longitude
 				));
+
 				foreach (var timeUpdate in stationDetails.TimeUpdates) {
 					Console.WriteLine(String.Format(
 						"\t{0} - {1} - {2} ",

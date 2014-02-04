@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DublinRTPI.Core.Entities;
 using DublinRTPI.Core.Contracs;
 using Newtonsoft.Json.Linq;
+using System.Text.RegularExpressions;
 
 namespace DublinRTPI.Core.EndPointParser
 {
@@ -13,13 +14,31 @@ namespace DublinRTPI.Core.EndPointParser
 			var o = JObject.Parse(json);
 			if (o["value"]["items"].Children().FirstOrDefault() != null) {
 				var html = o["value"]["items"][0]["col_1"].ToString();
-				html = html.ToString();
-				// TODO
-				return new Station(){ 
-					TimeUpdates = new List<TimeUpdate>(){ 
-						new TimeUpdate(){ Traincode = html} 
-					} 
-				};
+
+				string[] values = html.Split(
+					new string[] { 
+						"<div class=\"Outbound\"><h4>Outbound</h4>",
+						"<div class=\"Inbound\"><h4>Inbound</h4>",
+						"<div class=\"location\">",
+						"<div class=\"time\">",
+						"</div>",
+						"No trams forecast"
+					},
+					StringSplitOptions.RemoveEmptyEntries);
+
+				var timeUpdates = new List<TimeUpdate>();
+				var currentTimeUpdate = new TimeUpdate();
+				for(var i = 0; i < values.Length; i++){
+					if (i % 2 == 0) {
+						currentTimeUpdate = new TimeUpdate();
+						currentTimeUpdate.Destination = values[i];
+						currentTimeUpdate.Traincode = values[i];
+					} else {
+						currentTimeUpdate.Time = values[i] + "m";
+						timeUpdates.Add(currentTimeUpdate);
+					}
+				}
+				return new Station(){ TimeUpdates = timeUpdates };
 			}
 			return new Station(){ TimeUpdates = new List<TimeUpdate>() };
 		}

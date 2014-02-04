@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DublinRTPI.Core
+namespace DublinRTPI.Core.Entities
 {
 	public class MapMarker
 	{
