@@ -31,14 +31,25 @@ namespace DublinRTPI.Core.EndPoints
 		}
 
 		public async Task<List<Station>> GetStations(){
-			throw new NotImplementedException();
+			throw new NotSupportedException();
 		}
 
 		public async Task<List<Station>> GetStationsByRoute(string routeId){
+			/*
+			// http://www.dublinbus.ie/en/RTPI/Sources-of-Real-Time-Information/?searchtype=route&searchquery=16
+			$('#rtpi-results tr').each(function(index, row){ 
+				if($(row).attr('class') != 'yellow'){ 
+					$(row).find('td').each(function(index2, column){ 
+						console.log($(column).text().trim()); 
+					}); 
+				};
+			});
+			*/
 			throw new NotImplementedException();
 		}
 
 		public async Task<Station> GetStationDetails(string stationId){
+			// http://www.dublinbus.ie/en/RTPI/Sources-of-Real-Time-Information/?searchtype=view&searchquery=6041
 			throw new NotImplementedException();
 		}
 
