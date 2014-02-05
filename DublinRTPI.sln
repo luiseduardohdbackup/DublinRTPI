@@ -87,6 +87,6 @@ Global
 		{ECA94B40-A7F3-4071-96C9-9691A62EC43F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = DublinRTPI.iOS\DublinRTPI.iOS.csproj
+		StartupItem = DublinRTPI.Dev\DublinRTPI.Dev.csproj
 	EndGlobalSection
 EndGlobal

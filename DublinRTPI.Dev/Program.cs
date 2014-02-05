@@ -27,9 +27,9 @@ namespace DublinRTPI.Dev
 					station.Id).Result;
 
 				Console.WriteLine(String.Format(
-					"{0} / {1} - [{2},{3}] ",
+					"{0} - {1} - [{2},{3}] ",
+					DateTime.Now.ToString(),
 					stationDetails.Id,
-					stationDetails.Name,
 					stationDetails.Latitude,
 					stationDetails.Longitude
 				));
@@ -54,7 +54,8 @@ namespace DublinRTPI.Dev
 					station.Id).Result;
 
 				Console.WriteLine(String.Format(
-					"{0} / {1} - [{2},{3}] ",
+					"{0} - {1} | {2} - [{3},{4}] ",
+					DateTime.Now.ToString(),
 					stationDetails.Id,
 					stationDetails.Name,
 					stationDetails.Latitude,
@@ -82,12 +83,14 @@ namespace DublinRTPI.Dev
 					station.Id).Result;
 
 				Console.WriteLine(String.Format(
-					"{0} / {1} - [{2},{3}] ",
+					"{0} - {1} | {2} - [{3},{4}] ",
+					DateTime.Now.ToString(),
 					stationDetails.Id,
 					stationDetails.Name,
 					stationDetails.Latitude,
 					stationDetails.Longitude
 				));
+
 				Console.WriteLine(String.Format(
 					"\tTotal: {0} - Availabile: {1}",
 					stationDetails.VehicleAvailabilityUpdate.Total,

@@ -34,7 +34,7 @@ namespace DublinRTPI.Core.EndPointParser
 						currentTimeUpdate.Destination = values[i];
 						currentTimeUpdate.Traincode = values[i];
 					} else {
-						currentTimeUpdate.Time = values[i] + "m";
+						currentTimeUpdate.Time = values[i];
 						timeUpdates.Add(currentTimeUpdate);
 					}
 				}

@@ -6,23 +6,23 @@ namespace DublinRTPI.iOS
 {
 	public class MapController : IMapController
 	{
-		void RenderMap(){
+		public void RenderMap(){
 			throw new NotImplementedException ();
 		}
 
-		void AddMarker(MapMarker marker){
+		public void AddMarker(MapMarker marker){
 			throw new NotImplementedException ();
 		}
 
-		void RemoveAllMarkers(){
+		public void RemoveAllMarkers(){
 			throw new NotImplementedException ();
 		}
 
-		void SetFocusOnMarker(MapMarker marker){
+		public void SetFocusOnMarker(MapMarker marker){
 			throw new NotImplementedException ();
 		}
 
-		void SetUserLocationMarker(){
+		public void SetUserLocationMarker(){
 			throw new NotImplementedException ();
 		}
 	}
