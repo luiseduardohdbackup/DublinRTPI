@@ -44,8 +44,6 @@
     <Compile Include="Entities\Station.cs" />
     <Compile Include="Entities\TimeUpdate.cs" />
     <Compile Include="Entities\VehicleAvailabilityUpdate.cs" />
-    <Compile Include="Contracts\IMapController.cs" />
-    <Compile Include="Entities\MapMarker.cs" />
     <Compile Include="EndPoints\LuasData.cs" />
     <Compile Include="EndPointParser\LuasDataParser.cs" />
     <Compile Include="EndPointParser\IrishRailDataParser.cs" />
@@ -54,7 +52,7 @@
     <Compile Include="EndPoints\DublinBusDataProvider.cs" />
     <Compile Include="EndPointParser\DublinBusDataParser.cs" />
     <Compile Include="Contracts\IDataController.cs" />
-    <Compile Include="IDataController.cs" />
+    <Compile Include="DataController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

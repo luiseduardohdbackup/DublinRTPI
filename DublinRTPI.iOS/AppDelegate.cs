@@ -1,8 +1,9 @@
 ﻿using System;
+using MonoTouch.Foundation;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using DublinRTPI.iOS.Views;
 
 namespace DublinRTPI.iOS
 {
@@ -26,18 +27,37 @@ namespace DublinRTPI.iOS
 		{
 			// create a new window instance based on the screen size
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
-			
-			var viewController1 = new FirstViewController ();
-			var viewController2 = new SecondViewController ();
+
+			var luasView = new LuasViewController();
+			var trainView = new TrainViewController ();
+			var bikeView = new BikeViewController();
+			// TODO DUBLIN BUS
 
 			tabBarController = new UITabBarController ();
-			tabBarController.ViewControllers = new UIViewController [] {
-				viewController1,
-				viewController2,
+			tabBarController.ViewControllers = new UIViewController[]{ 
+				luasView,
+				trainView,
+				bikeView
+			};
+
+			tabBarController.ViewControllerSelected += (object sender, UITabBarSelectionEventArgs e) => {
+				switch(e.ViewController.TabBarItem.Title){
+				case "Luas":
+					luasView.DisplayStations();
+					break;
+				case "Irish Rail":
+					trainView.DisplayStations();
+					break;
+				case "Dublin Bike":
+					bikeView.DisplayStations();
+					break;
+				default:
+					throw new InvalidOperationException();
+				}
 			};
 			
 			window.RootViewController = tabBarController;
-			window.MakeKeyAndVisible ();
+			window.MakeKeyAndVisible();
 			
 			return true;
 		}
