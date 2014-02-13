@@ -21,7 +21,7 @@ namespace DublinRTPI.Dev
 			var stations = dataController.GetStations(ServiceProviderEnum.Luas).Result;
 			foreach (var station in stations) {
 			
-
+				/*
 				var stationDetails = dataController.GetStationDetails(
 					ServiceProviderEnum.Luas, 
 					station.Id).Result;
@@ -41,6 +41,7 @@ namespace DublinRTPI.Dev
 						timeUpdate.Time
 					));
 				}
+				*/
 			}
 		}
 
@@ -48,7 +49,7 @@ namespace DublinRTPI.Dev
 			Console.WriteLine ("\n\nIRISH RAIL:\n");
 			var stations = dataController.GetStations(ServiceProviderEnum.IrishRail).Result;
 			foreach (var station in stations) {
-
+				/*
 				var stationDetails = dataController.GetStationDetails(
 					ServiceProviderEnum.IrishRail, 
 					station.Id).Result;
@@ -70,6 +71,7 @@ namespace DublinRTPI.Dev
 						timeUpdate.Time
 					));
 				}
+				*/
 			}
 		}
 
@@ -77,7 +79,7 @@ namespace DublinRTPI.Dev
 			Console.WriteLine ("\n\nDUBLIN BIKE:\n");
 			var stations = dataController.GetStations(ServiceProviderEnum.DublinBike).Result;
 			foreach (var station in stations) {
-
+				/*
 				var stationDetails = dataController.GetStationDetails(
 					ServiceProviderEnum.DublinBike,
 					station.Id).Result;
@@ -96,6 +98,7 @@ namespace DublinRTPI.Dev
 					stationDetails.VehicleAvailabilityUpdate.Total,
 					stationDetails.VehicleAvailabilityUpdate.Available
 				));
+				*/
 			}
 		}
 	}

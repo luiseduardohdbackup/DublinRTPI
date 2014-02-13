@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DublinRTPI.Core;
 using MonoTouch.CoreLocation;
+using System.Threading.Tasks;
 
 namespace DublinRTPI.iOS.Helpers
 {
@@ -27,11 +28,12 @@ namespace DublinRTPI.iOS.Helpers
 				Title = station.Name,
 				Coordinate = new CLLocationCoordinate2D (station.Latitude, station.Longitude)
 			};
+
 			this._map.AddAnnotation (marker);
 		}
 
-		public void DisplayStations(ServiceProviderEnum source){
-			var stations = this.DataController.GetStations(source).Result;
+		public async void DisplayStations(ServiceProviderEnum source){
+			var stations = await this.DataController.GetStations(source);
 			stations.ForEach( station => this.AddStationMarker(station) );
 		}
 	}

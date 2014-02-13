@@ -16,19 +16,21 @@ namespace DublinRTPI.iOS.Views
 
 		public TrainViewController()
 		{
+			this.Title = "DUBLIN RTPI";
 			this.ServiceType = ServiceProviderEnum.IrishRail;
 			this.Map = new MKMapView(UIScreen.MainScreen.Bounds);
+			this.Map.Delegate = new CustomMapDelegate();
 			this.Map.ShowsUserLocation = true;
 			this.Map.ZoomEnabled = true;
 			this.Map.ScrollEnabled = true;
 			this.MapActionsHelper = new MapActionsHelper(this.Map);
-			this.View = this.Map;
+			this.View.AddSubview(this.Map);
 			this.TabBarItem = new UITabBarItem();
 			this.TabBarItem.Title = "Irish Rail";
-			//this.TabBarItem.Image = UIImage.FromFile ("Images/second.png");
+			this.TabBarItem.Image = UIImage.FromFile("second.png");
 		}
 
-		public void DisplayStations()
+		public async void DisplayStations()
 		{
 			this.MapActionsHelper.DisplayStations(this.ServiceType);
 		}

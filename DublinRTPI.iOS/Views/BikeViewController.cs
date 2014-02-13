@@ -18,6 +18,7 @@ namespace DublinRTPI.iOS.Views
 		{
 			this.ServiceType = ServiceProviderEnum.DublinBike;
 			this.Map = new MKMapView(UIScreen.MainScreen.Bounds);
+			this.Map.Delegate = new CustomMapDelegate();
 			this.Map.ShowsUserLocation = true;
 			this.Map.ZoomEnabled = true;
 			this.Map.ScrollEnabled = true;
@@ -25,10 +26,10 @@ namespace DublinRTPI.iOS.Views
 			this.View = this.Map;
 			this.TabBarItem = new UITabBarItem();
 			this.TabBarItem.Title = "Dublin Bike";
-			//this.TabBarItem.Image = UIImage.FromFile ("Images/second.png");
+			this.TabBarItem.Image = UIImage.FromFile("first.png");
 		}
 
-		public void DisplayStations()
+		public async void DisplayStations()
 		{
 			this.MapActionsHelper.DisplayStations(this.ServiceType);
 		}

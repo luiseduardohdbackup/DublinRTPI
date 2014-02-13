@@ -10,7 +10,7 @@ namespace DublinRTPI.Core.DataAccess
 	internal class HttpClientHelper
 	{
 	
-		public Task<string> GetJson(string url, Dictionary<string,string> parameters = null){
+		public async Task<string> GetJson(string url, Dictionary<string,string> parameters = null){
 			// parameters?
 			if (parameters != null) {
 				if (parameters.Count > 0) {
@@ -30,8 +30,7 @@ namespace DublinRTPI.Core.DataAccess
 			// send request
 			var uri = new Uri(url);
 			var req = new HttpClient();
-			Task<string> getJsonTask = req.GetStringAsync(uri);
-			return getJsonTask;
+			return await req.GetStringAsync(uri);
 		}
 	}
 }
