@@ -112,10 +112,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
-    <BundleResource Include="Resources\first.png" />
-    <BundleResource Include="Resources\first%402x.png" />
-    <BundleResource Include="Resources\second.png" />
-    <BundleResource Include="Resources\second%402x.png" />
     <BundleResource Include="Resources\Icon-60%402x.png" />
     <BundleResource Include="Resources\Icon.png" />
     <BundleResource Include="Resources\Icon%402x.png" />
@@ -131,6 +127,12 @@
     <BundleResource Include="Resources\Icon-Small%402x.png" />
     <BundleResource Include="Resources\Default%402x.png" />
     <BundleResource Include="Resources\Default.png" />
+    <BundleResource Include="Resources\bike.png" />
+    <BundleResource Include="Resources\bike%402x.png" />
+    <BundleResource Include="Resources\dart.png" />
+    <BundleResource Include="Resources\dart%402x.png" />
+    <BundleResource Include="Resources\luas.png" />
+    <BundleResource Include="Resources\luas%402x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

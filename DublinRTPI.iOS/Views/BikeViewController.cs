@@ -5,6 +5,7 @@ using MonoTouch.Foundation;
 using MonoTouch.MapKit;
 using DublinRTPI.Core.Entities;
 using DublinRTPI.iOS.Helpers;
+using MonoTouch.CoreLocation;
 
 namespace DublinRTPI.iOS.Views
 {
@@ -12,27 +13,21 @@ namespace DublinRTPI.iOS.Views
 	{
 		public MKMapView Map;
 		public MapActionsHelper MapActionsHelper;
-		public ServiceProviderEnum ServiceType;
 
 		public BikeViewController()
 		{
 			this.Title = "DUBLIN RTPI";
-			this.ServiceType = ServiceProviderEnum.DublinBike;
 			this.Map = new MKMapView(UIScreen.MainScreen.Bounds);
-			//this.Map.Delegate = new CustomMapDelegate();
-			this.Map.ShowsUserLocation = true;
-			this.Map.ZoomEnabled = true;
-			this.Map.ScrollEnabled = true;
-			this.MapActionsHelper = new MapActionsHelper(this.Map);
+			this.MapActionsHelper = new MapActionsHelper(this.Map, ServiceProviderEnum.DublinBike);
 			this.View = this.Map;
 			this.TabBarItem = new UITabBarItem();
 			this.TabBarItem.Title = "Dublin Bike";
-			this.TabBarItem.Image = UIImage.FromFile("first.png");
+			this.TabBarItem.Image = UIImage.FromFile("bike.png");
 		}
 
 		public async void DisplayStations()
 		{
-			this.MapActionsHelper.DisplayStations(this.ServiceType);
+			this.MapActionsHelper.DisplayStations();
 		}
 
 		public override void DidReceiveMemoryWarning ()

@@ -5,11 +5,31 @@ using System.Linq;
 using Newtonsoft.Json.Linq;
 using DublinRTPI.Core.Entities;
 using DublinRTPI.Core.Contracs;
+using System.Globalization;
 
 namespace DublinRTPI.Core.EndPointParser
 {
 	internal class DublinBikeDataParser : IEndPointParser
 	{
+		private string ToTitleCase(string s){
+			if (s == null) return s;
+
+			String[] words = s.Split(' ');
+			for (int i = 0; i < words.Length; i++)
+			{
+				if (words[i].Length == 0) continue;
+
+				Char firstChar = Char.ToUpper(words[i][0]); 
+				String rest = "";
+				if (words[i].Length > 1)
+				{
+					rest = words[i].Substring(1).ToLower();
+				}
+				words[i] = firstChar + rest;
+			}
+			return String.Join(" ", words);
+		}
+
 		public Station ParseStationDetails(string json){
 
 			var o = JObject.Parse(json);
@@ -32,7 +52,7 @@ namespace DublinRTPI.Core.EndPointParser
 
 			var station = new Station () {
 				Id = stationJson["number"].ToString(),
-				Name = stationJson["name"].ToString(),
+				Name = this.ToTitleCase(stationJson["name"].ToString()),
 				Latitude = Double.Parse(stationJson["lat"].ToString()),
 				Longitude = Double.Parse(stationJson["lng"].ToString()),
 				TimeUpdates = null,

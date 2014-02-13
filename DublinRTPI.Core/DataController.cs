@@ -4,6 +4,7 @@ using DublinRTPI.Core.Entities;
 using DublinRTPI.Core.Contracs;
 using DublinRTPI.Core.EndPoints;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace DublinRTPI.Core
 {
@@ -54,6 +55,14 @@ namespace DublinRTPI.Core
 		public async Task<Station> GetStationDetails(ServiceProviderEnum serviceProvider, string stationId){
 			var dataProvider = this.GetEnpointByDataProviderType(serviceProvider);
 			return await dataProvider.GetStationDetails(stationId);
+		}
+
+		// TODO this is a hack need custom annotation for iOS project
+		public async Task<Station> GetStationDetailsByName(ServiceProviderEnum serviceProvider, string name){
+			var dataProvider = this.GetEnpointByDataProviderType(serviceProvider);
+			var stations = await this.GetStations (serviceProvider);
+			var station = stations.Where (st => st.Name.Equals (name)).First();
+			return await dataProvider.GetStationDetails(station.Id);
 		}
 
 		public async Task<List<Route>> GetRoutes(ServiceProviderEnum serviceProvider){
