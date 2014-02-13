@@ -16,9 +16,10 @@ namespace DublinRTPI.iOS.Views
 
 		public BikeViewController()
 		{
+			this.Title = "DUBLIN RTPI";
 			this.ServiceType = ServiceProviderEnum.DublinBike;
 			this.Map = new MKMapView(UIScreen.MainScreen.Bounds);
-			this.Map.Delegate = new CustomMapDelegate();
+			//this.Map.Delegate = new CustomMapDelegate();
 			this.Map.ShowsUserLocation = true;
 			this.Map.ZoomEnabled = true;
 			this.Map.ScrollEnabled = true;

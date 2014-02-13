@@ -38,9 +38,9 @@ namespace DublinRTPI.iOS
 
 			tabBarController = new UITabBarController ();
 			tabBarController.ViewControllers = new UIViewController[]{ 
-				this.luasView,
-				this.trainView,
-				this.bikeView
+				new UINavigationController(this.luasView),
+				new UINavigationController(this.trainView),
+				new UINavigationController(this.bikeView)
 			};
 
 			tabBarController.ViewControllerSelected += OnViewSelected;

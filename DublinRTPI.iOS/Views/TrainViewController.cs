@@ -19,7 +19,7 @@ namespace DublinRTPI.iOS.Views
 			this.Title = "DUBLIN RTPI";
 			this.ServiceType = ServiceProviderEnum.IrishRail;
 			this.Map = new MKMapView(UIScreen.MainScreen.Bounds);
-			this.Map.Delegate = new CustomMapDelegate();
+			//this.Map.Delegate = new CustomMapDelegate();
 			this.Map.ShowsUserLocation = true;
 			this.Map.ZoomEnabled = true;
 			this.Map.ScrollEnabled = true;
