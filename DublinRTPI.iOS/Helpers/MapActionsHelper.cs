@@ -52,10 +52,10 @@ namespace DublinRTPI.iOS.Helpers
 		}
 
 		public void AddStationMarker(Station station){
-			// TODO create custom Annotation
-			var marker = new MKPointAnnotation() {
+			var marker = new StationAnnotation() {
 				Title = station.Name,
-				Coordinate = new CLLocationCoordinate2D (station.Latitude, station.Longitude)
+				Coordinate = new CLLocationCoordinate2D (station.Latitude, station.Longitude),
+				Model = station
 			};
 			this._map.AddAnnotation(marker);
 		}

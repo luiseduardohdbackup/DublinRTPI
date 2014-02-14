@@ -109,6 +109,7 @@
     <Compile Include="Views\LuasViewController.cs" />
     <Compile Include="Helpers\MapActionsHelper.cs" />
     <Compile Include="Helpers\CustomMapDelegate.cs" />
+    <Compile Include="Helpers\StationAnnotation.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />

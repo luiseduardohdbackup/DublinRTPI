@@ -57,14 +57,6 @@ namespace DublinRTPI.Core
 			return await dataProvider.GetStationDetails(stationId);
 		}
 
-		// TODO this is a hack need custom annotation for iOS project
-		public async Task<Station> GetStationDetailsByName(ServiceProviderEnum serviceProvider, string name){
-			var dataProvider = this.GetEnpointByDataProviderType(serviceProvider);
-			var stations = await this.GetStations (serviceProvider);
-			var station = stations.Where (st => st.Name.Equals (name)).First();
-			return await dataProvider.GetStationDetails(station.Id);
-		}
-
 		public async Task<List<Route>> GetRoutes(ServiceProviderEnum serviceProvider){
 			var dataProvider = this.GetEnpointByDataProviderType(serviceProvider);
 			return await dataProvider.GetRoutes();

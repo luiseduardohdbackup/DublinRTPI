@@ -12,7 +12,5 @@ namespace DublinRTPI.Core.Contracs
 		Task<Station> GetStationDetails(ServiceProviderEnum serviceProvider, string id);
 		Task<List<Route>> GetRoutes(ServiceProviderEnum serviceProvider);
 		Task<List<Station>> GetStationsByRoute(ServiceProviderEnum serviceProvider, string routeId);
-		// TODO this is a hack need Custom annotation for iOS app
-		Task<Station> GetStationDetailsByName (ServiceProviderEnum serviceProvider, string name);
 	}
 }

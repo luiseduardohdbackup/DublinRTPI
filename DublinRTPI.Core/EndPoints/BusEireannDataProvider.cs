@@ -26,23 +26,23 @@ namespace DublinRTPI.Core.EndPoints
 		}
 
 		public async Task<Boolean> IsDataServiceOnline(){
-			throw new NotImplementedException();
+			throw new NotSupportedException();
 		}
 
 		public async Task<List<Route>> GetRoutes(){
-			throw new NotImplementedException();
+			throw new NotSupportedException();
 		}
 			
 		public async Task<List<Station>> GetStations(){
-			throw new NotImplementedException();
+			throw new NotSupportedException();
 		}
 
 		public async Task<List<Station>> GetStationsByRoute(string routeId){
-			throw new NotImplementedException();
+			throw new NotSupportedException();
 		}
 			
 		public async Task<Station> GetStationDetails(string stationId){
-			throw new NotImplementedException();
+			throw new NotSupportedException();
 		}
 	}
 }

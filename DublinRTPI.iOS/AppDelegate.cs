@@ -52,18 +52,25 @@ namespace DublinRTPI.iOS
 		}
 
 		public async void OnViewSelected (object sender, UITabBarSelectionEventArgs e){
-			switch(e.ViewController.TabBarItem.Title){
-			case "Luas":
-				this.luasView.DisplayStations();
-				break;
-			case "Irish Rail":
-				this.trainView.DisplayStations();
-				break;
-			case "Dublin Bike":
-				this.bikeView.DisplayStations();
-				break;
-			default:
-				throw new InvalidOperationException();
+			try
+				{
+				switch(e.ViewController.TabBarItem.Title){
+				case "Luas":
+					this.luasView.DisplayStations();
+					break;
+				case "Irish Rail":
+					this.trainView.DisplayStations();
+					break;
+				case "Dublin Bike":
+					this.bikeView.DisplayStations();
+					break;
+				default:
+					throw new InvalidOperationException();
+				}
+			}
+			catch(Exception ex){
+				var alert = new UIAlertView ("Error", "Sorry there has been an error.", null, "OK", null);
+				alert.Show();
 			}
 		}
 	}
