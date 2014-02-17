@@ -10,9 +10,11 @@ namespace DublinRTPI.Core.EndPoints
 {
 	internal class DublinBusDataProvider : IEndPoint
 	{
-		public const string ROUTES = "";
-		public const string STATIONS = "";
-		public const string STATION_DETAILS = "";
+        public const string ROUTES = "https://www.dublinbus.ie/Templates/public/RoutePlannerService//RTPIWebServiceProxy.asmx/GetRoutesViaService";
+        public const string ROUTES_BODY = "{\"context\":{\"Text\":\"\",\"NumberOfItems\":0,\"Filter\":\"Enter your Route\",\"MinStringLength\":2}}";
+        public const string STATIONS = "http://www.rtpi.ie/ConnectService.svc/GetServiceDataSerialized";
+        public const string STATIONS_BODY = "{\"publicServiceCode\":\"{0}\",\"operatorID\":1,\"depotID\":1,\"serviceVariantIDs\":\"\",\"routeLineNodes\":\"none\"}";
+        public const string STATION_DETAILS = "https://www.dublinbus.ie/en/RTPI/Sources-of-Real-Time-Information";
 
 		private HttpClientHelper _httpClient;
 		private IEndPointParser _dataParser;
@@ -27,20 +29,31 @@ namespace DublinRTPI.Core.EndPoints
 		}
 
 		public async Task<List<Route>> GetRoutes(){
-			throw new NotSupportedException();
+            var json = await this._httpClient.PostJson(DublinBusDataProvider.ROUTES, DublinBusDataProvider.ROUTES_BODY);
+            return this._dataParser.ParseRoutes(json);
 		}
 
 		public async Task<List<Station>> GetStations(){
-			throw new NotSupportedException();
+            throw new NotSupportedException();
 		}
 
 		public async Task<List<Station>> GetStationsByRoute(string routeId){
-			throw new NotSupportedException();
+            var json = await this._httpClient.PostJson(
+                DublinBusDataProvider.STATIONS, 
+                String.Format(DublinBusDataProvider.STATIONS_BODY, routeId)
+            );
+            return this._dataParser.ParseStations(json);
 		}
 
 		public async Task<Station> GetStationDetails(string stationId){
-			throw new NotSupportedException();
+            var json = await this._httpClient.GetJson(
+                DublinBusDataProvider.STATION_DETAILS,
+                new Dictionary<string, string>() { 
+                    { "searchtype", "view"},
+                    { "searchquery", stationId }
+                }
+            );
+            return this._dataParser.ParseStationDetails(json);
 		}
-
 	}
 }
