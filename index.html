@@ -101,7 +101,7 @@
                         </p>
                         <div class="row features">
                             <div class="col-lg-4 appstore"><a href="#"><img style="width: 100%" src="./media/appstore.png"/></a></div>
-                            <div class="col-lg-4 playstore"><a href="#"><img style="width: 100%" src="./media/playstore.png"/></a></div>
+                            <div class="col-lg-4 playstore hide"><a href="#"><img style="width: 100%" src="./media/playstore.png"/></a></div>
                         </div>
                     </div>
                 </div>
@@ -236,17 +236,18 @@
                     };
 
                     var device = $('.deviceView').data('current');
+                    var opositeDevice = device == "iOS" ? "android" : "iOS";
 
-                    if (device == "iOS") {
-                        $('.playstore').hide();
-                        $('.appstore').show();
+                    if (opositeDevice == "iOS") {
+                        $('.playstore').addClass('hide');
+                        $('.appstore').removeClass('hide');
                     }
                     else {
-                        $('.appstore').hide();
-                        $('.playstore').show();
+                        $('.appstore').addClass('hide');
+                        $('.playstore').removeClass('hide');
                     }
 
-                    var opositeDevice = device == "iOS" ? "android" : "iOS";
+                    
                     $('.deviceView').find('i').removeClass(icon[opositeDevice]);
                     $('.' + device).each(function (index, item) {
                         Show($(item));
@@ -255,8 +256,6 @@
                             android: $(item).data('android'),
                             iOS: $(item).data('ios')
                         };
-
-                        console.log(imgSrc)
 
                         $(item).removeClass(device); // remove device class
                         $(item).addClass(opositeDevice); // add new device class
@@ -268,7 +267,6 @@
                 }
 
                 var init = function () {
-                    $('.playstore').hide();
                     $('.deviceView').tooltip();
                     $('.deviceView').on('click', function (eventArgs) { onDeviceViewClick(); });
                     if (isMobile.Android()) {
