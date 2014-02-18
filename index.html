@@ -82,7 +82,7 @@
     </head>
     <body>
         <div class="deviceView" data-current="iOS" data-toggle="tooltip" data-placement="bottom" title="Switch Device Preview ( iOS / Android )">
-            <i class="fa fa-mobile"></i>
+            <i class="fa fa-android"></i>
         </div>
         <div class="container">
             <!-- Jumbotron -->
@@ -100,8 +100,8 @@
                             St. Stephen's Green South Station? at any time in under 3 seconds.
                         </p>
                         <div class="row features">
-                            <div class="col-lg-4"><a href="#"><img style="width: 100%" src="./media/appstore.png"/></a></div>
-                            <div class="col-lg-4"><a href="#"><img style="width: 100%" src="./media/playstore.png"/></a></div>
+                            <div class="col-lg-4 appstore"><a href="#"><img style="width: 100%" src="./media/appstore.png"/></a></div>
+                            <div class="col-lg-4 playstore"><a href="#"><img style="width: 100%" src="./media/playstore.png"/></a></div>
                         </div>
                     </div>
                 </div>
@@ -201,8 +201,28 @@
         <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
+
+                var isMobile = (function(){
+                    return {
+                        Android: function() {
+                            return navigator.userAgent.match(/Android/i) ? true : false;
+                        },
+                        BlackBerry: function() {
+                            return navigator.userAgent.match(/BlackBerry/i) ? true : false;
+                        },
+                        iOS: function() {
+                            return navigator.userAgent.match(/iPhone|iPad|iPod/i) ? true : false;
+                        },
+                        Windows: function() {
+                            return navigator.userAgent.match(/IEMobile/i) ? true : false;
+                        },
+                        any: function() {
+                            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());
+                        }
+                    };
+                })();
                 
-                function onDeviceViewClick() {
+                var onDeviceViewClick = function () {
 
                     function Show(item) {
                         $(item).hide();
@@ -210,8 +230,24 @@
                         setTimeout(function () { $(e).show(); }, 200);
                     }
 
+                    var icon = {
+                        android: 'fa-android',
+                        iOS: 'fa-apple'
+                    };
+
                     var device = $('.deviceView').data('current');
+
+                    if (device == "iOS") {
+                        $('.playstore').hide();
+                        $('.appstore').show();
+                    }
+                    else {
+                        $('.appstore').hide();
+                        $('.playstore').show();
+                    }
+
                     var opositeDevice = device == "iOS" ? "android" : "iOS";
+                    $('.deviceView').find('i').removeClass(icon[opositeDevice]);
                     $('.' + device).each(function (index, item) {
                         Show($(item));
 
@@ -228,11 +264,19 @@
                         $(item).attr('src', imgSrc[opositeDevice]); // new image
                     });
                     $('.deviceView').data('current', opositeDevice);
+                    $('.deviceView').find('i').addClass(icon[device]);
                 }
 
-                $('.deviceView').tooltip();
-                $('.deviceView').on('click', function (eventArgs) { onDeviceViewClick(); });
+                var init = function () {
+                    $('.playstore').hide();
+                    $('.deviceView').tooltip();
+                    $('.deviceView').on('click', function (eventArgs) { onDeviceViewClick(); });
+                    if (isMobile.Android()) {
+                        onDeviceViewClick();
+                    }
+                }
 
+                init();
             });
         </script>
     </body>
