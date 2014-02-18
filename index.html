@@ -32,7 +32,7 @@
                 background-color: #222222;
             }
 
-            .container {
+            .main-container {
                 padding-top: 50px;
             }
 
@@ -51,12 +51,7 @@
             }
 
             .deviceView {
-                background-color: #222222;
-                position: fixed;
-                top: 50px;
-                padding: 0px 20px;
-                right: 80px;
-                font-size: 45px;
+                font-size: 20px;
             }
 
             .jumbotron .iOS, .jumbotron .android {
@@ -64,7 +59,7 @@
             }
 
             .iOS {
-                width: 100%;
+                width: 80%;
             }
             
             .android {
@@ -81,16 +76,34 @@
         </style>
     </head>
     <body>
-        <div class="deviceView" data-current="iOS" data-toggle="tooltip" data-placement="bottom" title="Switch Device Preview ( iOS / Android )">
-            <i class="fa fa-android"></i>
+        <!-- Static navbar -->
+        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active">
+                            <a href="#" class="deviceView" data-current="iOS">
+                                <i class="fa fa-android"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="container">
+        <div class="container main-container">
             <!-- Jumbotron -->
             <div class="jumbotron">
                 <div class="row">
                     <div class="col-lg-3" style="text-align: center;">
-                        <img class="bigEntrance iOS" src="http://thisisembark.com/showcase/img/iphone-3.png" 
-                            data-android="http://upload.wikimedia.org/wikipedia/commons/d/d6/Samsung_Galaxy_S_III.png" data-iOS="http://thisisembark.com/showcase/img/iphone-3.png"/>
+                        <i class="fa fa-map-marker" style="font-size: 300px;"></i>
                     </div>
                     <div class="col-lg-9">
                         <h1>Dublin RTPI</h1>
@@ -120,29 +133,25 @@
                 <div class="col-lg-3">
                     <h3>Luas</h3>
                     <div class="imgWrap">
-                        <img class="bigEntrance iOS" src="http://thisisembark.com/showcase/img/iphone-3.png" 
-                            data-android="http://upload.wikimedia.org/wikipedia/commons/d/d6/Samsung_Galaxy_S_III.png" data-ios="http://thisisembark.com/showcase/img/iphone-3.png"/>
+                        <img class="animatedElement hide iOS" src="./media/ios/1_1.png" data-android="./media/android/1_2.png" data-ios="./media/ios/1_1.png"/>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <h3>Irish Rail</h3>
                     <div class="imgWrap">
-                        <img class="bigEntrance iOS" src="http://thisisembark.com/showcase/img/iphone-3.png" 
-                            data-android="http://upload.wikimedia.org/wikipedia/commons/d/d6/Samsung_Galaxy_S_III.png" data-ios="http://thisisembark.com/showcase/img/iphone-3.png"/>
+                        <img class="animatedElement hide iOS" src="./media/ios/1_2.png" data-android="./media/android/1_2.png" data-ios="./media/ios/1_2.png"/>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <h3>Dublin Bike</h3>
                     <div class="imgWrap">
-                        <img class="bigEntrance iOS" src="http://thisisembark.com/showcase/img/iphone-3.png" 
-                            data-android="http://upload.wikimedia.org/wikipedia/commons/d/d6/Samsung_Galaxy_S_III.png" data-ios="http://thisisembark.com/showcase/img/iphone-3.png"/>
+                        <img class="animatedElement hide iOS" src="./media/ios/1_3.png" data-android="./media/android/1_3.png" data-ios="./media/ios/1_3.png"/>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <h3>Dublin Bus</h3>
                     <div class="imgWrap">
-                        <img class="bigEntrance iOS" src="http://thisisembark.com/showcase/img/iphone-3.png" 
-                            data-android="http://upload.wikimedia.org/wikipedia/commons/d/d6/Samsung_Galaxy_S_III.png" data-ios="http://thisisembark.com/showcase/img/iphone-3.png"/>
+                        <img class="animatedElement hide iOS" src="./media/ios/1_4.png" data-android="./media/android/1_4.png" data-ios="./media/ios/1_4.png"/>
                     </div>
                 </div>
             </div>
@@ -153,35 +162,27 @@
                     </h1>
                     <h4>
                         Dublin RTPI has been designed to be really easy and quick to use and provides a minimalist and elegant user interface.
-                        You can get to the information that you need with as litle as three simple steps.
+                        You can find the information that you need in just three simple steps.
                     </h4>
                 </div>
-                <div class="col-lg-3">
-                    <h3>1. Open the Dublin RTPI app</h3>
+
+                <div class="col-lg-4">
+                    <h3>1. Select how do you want to travel.</h3><br/>
                     <div class="imgWrap">
-                        <img class="bigEntrance iOS" src="http://thisisembark.com/showcase/img/iphone-3.png" 
-                            data-android="http://upload.wikimedia.org/wikipedia/commons/d/d6/Samsung_Galaxy_S_III.png" data-ios="http://thisisembark.com/showcase/img/iphone-3.png"/>
+                        <img class="animatedElement hide iOS" src="./media/ios/2_2.png"
+                            data-android="./media/android/2_3.png" data-ios="./media/ios/2_2.png"/>
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    <h3>2. Select how do you want to travel.</h3>
+                <div class="col-lg-4">
+                    <h3>2. Select one of the station in the map.</h3><br/>
                     <div class="imgWrap">
-                        <img class="bigEntrance iOS" src="http://thisisembark.com/showcase/img/iphone-3.png" 
-                            data-android="http://upload.wikimedia.org/wikipedia/commons/d/d6/Samsung_Galaxy_S_III.png" data-ios="http://thisisembark.com/showcase/img/iphone-3.png"/>
+                        <img class="animatedElement hide iOS" src="./media/ios/2_3.png" data-android="./media/android/2_3.png" data-ios="./media/ios/2_3.png"/>
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    <h3>3. Select one of the station in the map.</h3>
+                <div class="col-lg-4">
+                    <h3>3. Access the real-time information.</h3><br/>
                     <div class="imgWrap">
-                        <img class="bigEntrance iOS" src="http://thisisembark.com/showcase/img/iphone-3.png" 
-                            data-android="http://upload.wikimedia.org/wikipedia/commons/d/d6/Samsung_Galaxy_S_III.png" data-ios="http://thisisembark.com/showcase/img/iphone-3.png"/>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <h3>4. Access the real-time information.</h3>
-                    <div class="imgWrap">
-                        <img class="bigEntrance iOS" src="http://thisisembark.com/showcase/img/iphone-3.png" 
-                            data-android="http://upload.wikimedia.org/wikipedia/commons/d/d6/Samsung_Galaxy_S_III.png" data-ios="http://thisisembark.com/showcase/img/iphone-3.png"/>
+                        <img class="animatedElement hide iOS" src="./media/ios/2_4.png" data-android="./media/android/2_4.png" data-ios="./media/ios/2_4.png"/>
                     </div>
                 </div>
             </div>
@@ -258,6 +259,7 @@
                         };
 
                         $(item).removeClass(device); // remove device class
+                        $(item).removeClass('fadeIn').addClass("hide");
                         $(item).addClass(opositeDevice); // add new device class
                         
                         $(item).attr('src', imgSrc[opositeDevice]); // new image
@@ -265,6 +267,17 @@
                     $('.deviceView').data('current', opositeDevice);
                     $('.deviceView').find('i').addClass(icon[device]);
                 }
+
+                $(window).scroll(function() {
+                    $('.animatedElement').each(function(){
+                        var imagePos = $(this).offset().top;
+
+                        var topOfWindow = $(window).scrollTop();
+                        if (imagePos < topOfWindow+400) {
+                            $(this).removeClass("hide").addClass("fadeIn");
+                        }
+                    });
+                });
 
                 var init = function () {
                     $('.deviceView').tooltip();
