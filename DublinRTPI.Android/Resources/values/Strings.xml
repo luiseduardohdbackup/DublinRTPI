@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="hello">Hello World, Click Me!</string>
-	<string name="app_name">DublinRTPI.Android</string>
+	<string name="app_name">Dublin RTPI</string>
+	<string name="tab1">Luas</string>
+	<string name="tab2">Irish Rail</string>
+	<string name="tab3">Dublin Bike</string>
+	<string name="tab4">Dublin Bus</string>
 </resources>

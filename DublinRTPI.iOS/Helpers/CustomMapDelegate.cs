@@ -41,6 +41,9 @@ namespace DublinRTPI.iOS.Helpers
 			case ServiceProviderEnum.IrishRail:
 				anView.LeftCalloutAccessoryView = new UIImageView (UIImage.FromFile ("dart.png"));
 				break;
+			case ServiceProviderEnum.DublinBus:
+				anView.LeftCalloutAccessoryView = new UIImageView (UIImage.FromFile ("bus.png"));
+				break;
 			default:
 				throw new InvalidOperationException ();
 			}

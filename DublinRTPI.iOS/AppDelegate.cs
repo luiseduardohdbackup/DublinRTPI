@@ -19,6 +19,7 @@ namespace DublinRTPI.iOS
 		LuasViewController luasView;
 		TrainViewController trainView;
 		BikeViewController bikeView;
+		DublinBusViewController busView;
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this
 		// method you should instantiate the window, load the UI into it and then make the window
@@ -34,13 +35,14 @@ namespace DublinRTPI.iOS
 			this.luasView = new LuasViewController();
 			this.trainView = new TrainViewController ();
 			this.bikeView = new BikeViewController();
-			// TODO DUBLIN BUS
+			this.busView = new DublinBusViewController();
 
 			tabBarController = new UITabBarController ();
 			tabBarController.ViewControllers = new UIViewController[]{ 
 				new UINavigationController(this.luasView),
 				new UINavigationController(this.trainView),
-				new UINavigationController(this.bikeView)
+				new UINavigationController(this.bikeView),
+				new UINavigationController(this.busView),
 			};
 
 			tabBarController.ViewControllerSelected += OnViewSelected;
@@ -64,11 +66,14 @@ namespace DublinRTPI.iOS
 				case "Dublin Bike":
 					this.bikeView.DisplayStations();
 					break;
+				case "Dublin Bus":
+					this.busView.DisplayStations();
+					break;
 				default:
 					throw new InvalidOperationException();
 				}
 			}
-			catch(Exception ex){
+			catch(Exception){
 				var alert = new UIAlertView ("Error", "Sorry there has been an error.", null, "OK", null);
 				alert.Show();
 			}

@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text;
 
 namespace DublinRTPI.Core.DataAccess
 {
@@ -36,9 +37,10 @@ namespace DublinRTPI.Core.DataAccess
         {
             // send request
             var uri = new Uri(url);
-            var req = new HttpClient();
-            // TODO "Content-Type" = "application/json; charset=UTF-8";
-            return await req.GetStringAsync(uri);
+			var client = new HttpClient();
+			var content = new StringContent (body, Encoding.UTF8, "application/json; charset=UTF-8");
+			var response = await client.PostAsync(uri, content);
+			return await response.Content.ReadAsStringAsync();
         }
 	}
 }

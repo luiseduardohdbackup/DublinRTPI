@@ -1,34 +1,53 @@
-﻿using System;
-using Android.App;
-using Android.Content;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using Android.App;
 using Android.OS;
+using Android.Util;
 
-namespace DublinRTPI.Android
+namespace com.xamarin.example.actionbar.tabs
 {
-	[Activity (Label = "DublinRTPI.Android", MainLauncher = true)]
-	public class MainActivity : Activity
-	{
-		int count = 1;
+    [Activity(Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/ic_launcher")]
+    public class MainActivity : Activity
+    {
+        static readonly string Tag = "ActionBarTabsSupport";
 
-		protected override void OnCreate (Bundle bundle)
-		{
-			base.OnCreate (bundle);
+        Fragment[] _fragments;
 
-			// Set our view from the "main" layout resource
-			SetContentView (Resource.Layout.Main);
+        protected override void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
 
-			// Get our button from the layout resource,
-			// and attach an event to it
-			Button button = FindViewById<Button> (Resource.Id.myButton);
-			
-			button.Click += delegate {
-				button.Text = string.Format ("{0} clicks!", count++);
-			};
-		}
-	}
+			//SetContentView(Resource.Layout.Main);
+
+            ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
+			//SetContentView(Resource.Layout.Main);
+
+            _fragments = new Fragment[]
+                         {
+                             new WhatsOnFragment(),
+                             new SpeakersFragment(),
+                             new SessionsFragment()
+                         };
+
+			//AddTabToActionBar(Resource.String.tab1, Resource.Drawable.icon);
+			//AddTabToActionBar(Resource.String.tab2, Resource.Drawable.icon);
+			//AddTabToActionBar(Resource.String.tab3, Resource.Drawable.icon);
+        }
+
+        void AddTabToActionBar(int labelResourceId, int iconResourceId)
+        {
+            ActionBar.Tab tab = ActionBar.NewTab()
+                                         .SetText(labelResourceId)
+                                         .SetIcon(iconResourceId);
+            tab.TabSelected += TabOnTabSelected;
+            ActionBar.AddTab(tab);
+        }
+
+        void TabOnTabSelected(object sender, ActionBar.TabEventArgs tabEventArgs)
+        {
+            ActionBar.Tab tab = (ActionBar.Tab)sender;
+
+            Log.Debug(Tag, "The tab {0} has been selected.", tab.Text);
+            Fragment frag = _fragments[tab.Position];
+			//tabEventArgs.FragmentTransaction.Replace(Resource.Id.frameLayout1, frag);
+        }
+    }
 }
-
-

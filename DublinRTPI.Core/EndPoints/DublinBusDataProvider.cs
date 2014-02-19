@@ -34,7 +34,8 @@ namespace DublinRTPI.Core.EndPoints
 		}
 
 		public async Task<List<Station>> GetStations(){
-            throw new NotSupportedException();
+			//throw new NotSupportedException();
+			return new List<Station> ();
 		}
 
 		public async Task<List<Station>> GetStationsByRoute(string routeId){
