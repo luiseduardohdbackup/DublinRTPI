@@ -1,0 +1,52 @@
+body {
+    background-color: #eee;
+    color: #333;
+    font-family: 'Raleway', sans-serif;
+}
+
+.jumbotron, .well {
+    background-color: #ccc;
+    color: #333;
+}
+
+.main-container {
+    padding-top: 50px;
+}
+
+.footer {
+    text-align: center;
+    padding-bottom: 50px;
+    padding-top: 30px;
+}
+
+hr {
+    border-top: 1px solid #222222;
+}
+
+.features {
+    text-align: center;
+}
+
+.deviceView {
+    font-size: 20px;
+}
+
+.jumbotron .iOS, .jumbotron .android {
+    width: 80%;
+}
+
+.iOS {
+    width: 80%;
+}
+            
+.android {
+    width: 80%;
+}
+
+.imgWrap {
+    min-height: 476px;
+}
+
+.deviceView {
+    cursor: pointer;
+}

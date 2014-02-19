@@ -6,13 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="shortcut icon" href="./assets/ico/favicon.ico">
+        <link rel="icon" type="image/png" href="http://www.wolksoftware.com/src/media/favicon.png">
+        <link rel="shortcut icon" href="http://www.wolksoftware.com/src/media/favicon.png">
         <title>Dublin RTPI</title>
         <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css' />
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
         <link rel="stylesheet" href="http://www.justinaguilar.com/animations/css/animations.css" />
         <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-
+        <link href="./site.css" rel="stylesheet">
         <!-- Just for debugging purposes. Don't actually copy this line! -->
         <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -21,63 +22,10 @@
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
           <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <style>
-            body {
-                background-color: #272b30;
-                color: #fff;
-                font-family: 'Raleway', sans-serif;
-            }
-
-            .jumbotron, .well {
-                background-color: #222222;
-            }
-
-            .main-container {
-                padding-top: 50px;
-            }
-
-            .footer {
-                text-align: center;
-                padding-bottom: 50px;
-                padding-top: 30px;
-            }
-
-            hr {
-                border-top: 1px solid #222222;
-            }
-
-            .features {
-                text-align: center;
-            }
-
-            .deviceView {
-                font-size: 20px;
-            }
-
-            .jumbotron .iOS, .jumbotron .android {
-                width: 80%;
-            }
-
-            .iOS {
-                width: 80%;
-            }
-            
-            .android {
-                width: 80%;
-            }
-
-            .imgWrap {
-                min-height: 476px;
-            }
-
-            .deviceView {
-                cursor: pointer;
-            }
-        </style>
     </head>
     <body>
         <!-- Static navbar -->
-        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="navbar navbar-default navbar-static-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -91,7 +39,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="active">
                             <a href="#" class="deviceView" data-current="iOS">
-                                <i class="fa fa-android"></i>
+                                <i class="fa fa-android"></i> <span class="oslabel">Android</span>  User?
                             </a>
                         </li>
                     </ul>
@@ -200,95 +148,6 @@
         <!-- JavaScript -->
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-
-                var isMobile = (function(){
-                    return {
-                        Android: function() {
-                            return navigator.userAgent.match(/Android/i) ? true : false;
-                        },
-                        BlackBerry: function() {
-                            return navigator.userAgent.match(/BlackBerry/i) ? true : false;
-                        },
-                        iOS: function() {
-                            return navigator.userAgent.match(/iPhone|iPad|iPod/i) ? true : false;
-                        },
-                        Windows: function() {
-                            return navigator.userAgent.match(/IEMobile/i) ? true : false;
-                        },
-                        any: function() {
-                            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());
-                        }
-                    };
-                })();
-                
-                var onDeviceViewClick = function () {
-
-                    function Show(item) {
-                        $(item).hide();
-                        var e = item;
-                        setTimeout(function () { $(e).show(); }, 200);
-                    }
-
-                    var icon = {
-                        android: 'fa-android',
-                        iOS: 'fa-apple'
-                    };
-
-                    var device = $('.deviceView').data('current');
-                    var opositeDevice = device == "iOS" ? "android" : "iOS";
-
-                    if (opositeDevice == "iOS") {
-                        $('.playstore').addClass('hide');
-                        $('.appstore').removeClass('hide');
-                    }
-                    else {
-                        $('.appstore').addClass('hide');
-                        $('.playstore').removeClass('hide');
-                    }
-
-                    
-                    $('.deviceView').find('i').removeClass(icon[opositeDevice]);
-                    $('.' + device).each(function (index, item) {
-                        Show($(item));
-
-                        var imgSrc = {
-                            android: $(item).data('android'),
-                            iOS: $(item).data('ios')
-                        };
-
-                        $(item).removeClass(device); // remove device class
-                        $(item).removeClass('fadeIn').addClass("hide");
-                        $(item).addClass(opositeDevice); // add new device class
-                        
-                        $(item).attr('src', imgSrc[opositeDevice]); // new image
-                    });
-                    $('.deviceView').data('current', opositeDevice);
-                    $('.deviceView').find('i').addClass(icon[device]);
-                }
-
-                $(window).scroll(function() {
-                    $('.animatedElement').each(function(){
-                        var imagePos = $(this).offset().top;
-
-                        var topOfWindow = $(window).scrollTop();
-                        if (imagePos < topOfWindow+400) {
-                            $(this).removeClass("hide").addClass("fadeIn");
-                        }
-                    });
-                });
-
-                var init = function () {
-                    $('.deviceView').tooltip();
-                    $('.deviceView').on('click', function (eventArgs) { onDeviceViewClick(); });
-                    if (isMobile.Android()) {
-                        onDeviceViewClick();
-                    }
-                }
-
-                init();
-            });
-        </script>
+        <script type="text/javascript" src="./site.js"></script>
     </body>
 </html>
