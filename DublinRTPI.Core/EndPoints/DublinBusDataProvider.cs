@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DublinRTPI.Core.Entities;
@@ -13,7 +14,7 @@ namespace DublinRTPI.Core.EndPoints
         public const string ROUTES = "https://www.dublinbus.ie/Templates/public/RoutePlannerService//RTPIWebServiceProxy.asmx/GetRoutesViaService";
         public const string ROUTES_BODY = "{\"context\":{\"Text\":\"\",\"NumberOfItems\":0,\"Filter\":\"Enter your Route\",\"MinStringLength\":2}}";
         public const string STATIONS = "http://www.rtpi.ie/ConnectService.svc/GetServiceDataSerialized";
-        public const string STATIONS_BODY = "{\"publicServiceCode\":\"{0}\",\"operatorID\":1,\"depotID\":1,\"serviceVariantIDs\":\"\",\"routeLineNodes\":\"none\"}";
+        public const string STATIONS_BODY = @"{""publicServiceCode"":""{0}"",""operatorID"":1,""depotID"":1,""serviceVariantIDs"":"""",""routeLineNodes"":""none""}";
         public const string STATION_DETAILS = "https://www.dublinbus.ie/en/RTPI/Sources-of-Real-Time-Information";
 
 		private HttpClientHelper _httpClient;
@@ -25,7 +26,15 @@ namespace DublinRTPI.Core.EndPoints
 		}
 
 		public async Task<Boolean> IsDataServiceOnline(){
-			throw new NotSupportedException();
+            try
+            {
+                var temp = await this.GetRoutes();
+                var temp2 = this.GetStationsByRoute(temp.First().Id);
+                return true;
+            }
+            catch (Exception) {
+                return false;
+            }
 		}
 
 		public async Task<List<Route>> GetRoutes(){
@@ -34,27 +43,33 @@ namespace DublinRTPI.Core.EndPoints
 		}
 
 		public async Task<List<Station>> GetStations(){
-			//throw new NotSupportedException();
-			return new List<Station> ();
+            var stations = new List<Station>();
+            var routes = await this.GetRoutes();
+            foreach (var route in routes)
+            {
+                stations.AddRange(await this.GetStationsByRoute(route.Id));
+            }
+            return stations;
 		}
 
 		public async Task<List<Station>> GetStationsByRoute(string routeId){
+            var body = DublinBusDataProvider.STATIONS_BODY.Replace("{0}", routeId);
             var json = await this._httpClient.PostJson(
-                DublinBusDataProvider.STATIONS, 
-                String.Format(DublinBusDataProvider.STATIONS_BODY, routeId)
+                DublinBusDataProvider.STATIONS,
+                body
             );
             return this._dataParser.ParseStations(json);
 		}
 
 		public async Task<Station> GetStationDetails(string stationId){
-            var json = await this._httpClient.GetJson(
+            var html = await this._httpClient.GetJson(
                 DublinBusDataProvider.STATION_DETAILS,
                 new Dictionary<string, string>() { 
                     { "searchtype", "view"},
                     { "searchquery", stationId }
                 }
             );
-            return this._dataParser.ParseStationDetails(json);
+            return this._dataParser.ParseStationDetails(html);
 		}
 	}
 }

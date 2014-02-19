@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using DublinRTPI.Core;
 using DublinRTPI.Core.Entities;
 using DublinRTPI.Core.Contracs;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace DublinRTPI.Dev
 {
@@ -11,95 +14,34 @@ namespace DublinRTPI.Dev
 		public static void Main (string[] args)
 		{
 			var dataController = new DataController();
-			MainClass.TestRail(dataController);
-			MainClass.TestBikes(dataController);
-			MainClass.TestLuas (dataController);
+            MainClass.Test(dataController, ServiceProviderEnum.IrishRail, "Irish Rail", false);
+            MainClass.Test(dataController, ServiceProviderEnum.DublinBike, "Dublin Bikes", false);
+            MainClass.Test(dataController, ServiceProviderEnum.Luas, "Luas", false);
+            MainClass.Test(dataController, ServiceProviderEnum.DublinBus, "Dublin Bus", false);
+            Console.WriteLine(String.Format("{0} - Press key to close", DateTime.Now.Second.ToString()));
+            Console.ReadKey();
 		}
 
-		public static void TestLuas(IDataController dataController){
-			Console.WriteLine ("\n\nLUAS:\n");
-			var stations = dataController.GetStations(ServiceProviderEnum.Luas).Result;
-			foreach (var station in stations) {
-			
-				/*
-				var stationDetails = dataController.GetStationDetails(
-					ServiceProviderEnum.Luas, 
-					station.Id).Result;
+        public static void Test(IDataController dataController, ServiceProviderEnum service, string name, bool addDetails)
+        {
+            Console.WriteLine(String.Format("{0} - {1}", DateTime.Now.Second.ToString(), name));
+            var stations = dataController.GetStations(service).Result;
+            if(addDetails.Equals(true)){
+                foreach (var station in stations)
+                {
+                    var stationDetails = dataController.GetStationDetails(
+                        service,
+                        station.Id).Result;
+                    station.TimeUpdates = stationDetails.TimeUpdates;
+                    station.VehicleAvailabilityUpdate = stationDetails.VehicleAvailabilityUpdate;
+                }            
+            }
+            MainClass.Log(stations, name);
+        }
 
-				Console.WriteLine(String.Format(
-					"{0} - {1} - [{2},{3}] ",
-					DateTime.Now.ToString(),
-					stationDetails.Id,
-					stationDetails.Latitude,
-					stationDetails.Longitude
-				));
-
-				foreach (var timeUpdate in stationDetails.TimeUpdates) {
-					Console.WriteLine(String.Format(
-						"\t{0} - {1}",
-						timeUpdate.Destination,
-						timeUpdate.Time
-					));
-				}
-				*/
-			}
-		}
-
-		public static void TestRail(IDataController dataController){
-			Console.WriteLine ("\n\nIRISH RAIL:\n");
-			var stations = dataController.GetStations(ServiceProviderEnum.IrishRail).Result;
-			foreach (var station in stations) {
-				/*
-				var stationDetails = dataController.GetStationDetails(
-					ServiceProviderEnum.IrishRail, 
-					station.Id).Result;
-
-				Console.WriteLine(String.Format(
-					"{0} - {1} | {2} - [{3},{4}] ",
-					DateTime.Now.ToString(),
-					stationDetails.Id,
-					stationDetails.Name,
-					stationDetails.Latitude,
-					stationDetails.Longitude
-				));
-
-				foreach (var timeUpdate in stationDetails.TimeUpdates) {
-					Console.WriteLine(String.Format(
-						"\t{0} - {1} - {2} ",
-						timeUpdate.Traincode,
-						timeUpdate.Destination,
-						timeUpdate.Time
-					));
-				}
-				*/
-			}
-		}
-
-		public static void TestBikes(IDataController dataController){
-			Console.WriteLine ("\n\nDUBLIN BIKE:\n");
-			var stations = dataController.GetStations(ServiceProviderEnum.DublinBike).Result;
-			foreach (var station in stations) {
-				/*
-				var stationDetails = dataController.GetStationDetails(
-					ServiceProviderEnum.DublinBike,
-					station.Id).Result;
-
-				Console.WriteLine(String.Format(
-					"{0} - {1} | {2} - [{3},{4}] ",
-					DateTime.Now.ToString(),
-					stationDetails.Id,
-					stationDetails.Name,
-					stationDetails.Latitude,
-					stationDetails.Longitude
-				));
-
-				Console.WriteLine(String.Format(
-					"\tTotal: {0} - Availabile: {1}",
-					stationDetails.VehicleAvailabilityUpdate.Total,
-					stationDetails.VehicleAvailabilityUpdate.Available
-				));
-				*/
-			}
-		}
+        public static void Log(List<Station> stations, string name) {
+            var json = JsonConvert.SerializeObject(stations);
+            File.WriteAllText(String.Format("{0}.json", name), json);
+        }
 	}
 }
