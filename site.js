@@ -58,7 +58,6 @@ $(document).ready(function () {
             };
 
             $(item).removeClass(device); // remove device class
-            $(item).removeClass('fadeIn').addClass("hide");
             $(item).addClass(opositeDevice); // add new device class
 
             $(item).attr('src', imgSrc[opositeDevice]); // new image
@@ -66,17 +65,6 @@ $(document).ready(function () {
         $('.deviceView').data('current', opositeDevice);
         $('.deviceView').find('i').addClass(icon[device]);
     }
-
-    $(window).scroll(function () {
-        $('.animatedElement').each(function () {
-            var imagePos = $(this).offset().top;
-
-            var topOfWindow = $(window).scrollTop();
-            if (imagePos < topOfWindow + 400) {
-                $(this).removeClass("hide").addClass("fadeIn");
-            }
-        });
-    });
 
     var init = function () {
         $('.deviceView').tooltip();
