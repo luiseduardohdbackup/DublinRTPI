@@ -14,7 +14,7 @@ namespace DublinRTPI.iOS.Helpers
 		public ServiceProviderEnum service;
 		public DataController DataController;
 		public string pId = "PinAnnotation";
-		public string bId = "BasicAnnotation";
+        public string sId = "StationAnnotation";
 
 		public CustomMapDelegate(ServiceProviderEnum service, DataController dataController){
 			this.service = service;
@@ -23,41 +23,75 @@ namespace DublinRTPI.iOS.Helpers
 
 		public override MKAnnotationView GetViewForAnnotation (MKMapView mapView, NSObject annotation)
 		{
-			// save resoureces
-			MKPinAnnotationView anView = (MKPinAnnotationView)mapView.DequeueReusableAnnotation (pId);
-			if (anView == null) anView = new MKPinAnnotationView (annotation, pId);
 
-			anView.CanShowCallout = true;
-			// anView.Image = UIImage.FromFile("marker.png");
+            /*
+             * https://github.com/xamarin/Seminars/blob/master/2012-07-12-MapKit/MapDemo/MapDemo/MapDemoViewController.cs#L67
+             */
 
-			// set custom marker and tooltip image
-			switch (this.service) {
-			case ServiceProviderEnum.Luas:
-				anView.LeftCalloutAccessoryView = new UIImageView (UIImage.FromFile ("luas.png"));
-				break;
-			case ServiceProviderEnum.DublinBike:
-				anView.LeftCalloutAccessoryView = new UIImageView (UIImage.FromFile ("bike.png"));
-				break;
-			case ServiceProviderEnum.IrishRail:
-				anView.LeftCalloutAccessoryView = new UIImageView (UIImage.FromFile ("dart.png"));
-				break;
-			case ServiceProviderEnum.DublinBus:
-				anView.LeftCalloutAccessoryView = new UIImageView (UIImage.FromFile ("bus.png"));
-				break;
-			default:
-				throw new InvalidOperationException ();
-			}
+            if (annotation is MKUserLocation)
+            {
+                return null;
+            }
 
-			// set custom tooltip touch action
-			var detailButton = UIButton.FromType(UIButtonType.DetailDisclosure);
-			anView.RightCalloutAccessoryView = detailButton;
+            if (view is StationAnnotation)
+            {
+                // save resoureces
+                MKPinAnnotationView anView = (MKPinAnnotationView)mapView.DequeueReusableAnnotation(sId);
+                if (anView == null)
+                {
+                    anView = new MKPinAnnotationView(annotation, sId);
+                }
 
+                anView.CanShowCallout = true;
+                // anView.Image = UIImage.FromFile("marker.png");
+
+                // set custom marker and tooltip image
+                switch (this.service)
+                {
+                    case ServiceProviderEnum.Luas:
+                        anView.LeftCalloutAccessoryView = new UIImageView(UIImage.FromFile("luas.png"));
+                        break;
+                    case ServiceProviderEnum.DublinBike:
+                        anView.LeftCalloutAccessoryView = new UIImageView(UIImage.FromFile("bike.png"));
+                        break;
+                    case ServiceProviderEnum.IrishRail:
+                        anView.LeftCalloutAccessoryView = new UIImageView(UIImage.FromFile("dart.png"));
+                        break;
+                    case ServiceProviderEnum.DublinBus:
+                        anView.LeftCalloutAccessoryView = new UIImageView(UIImage.FromFile("bus.png"));
+                        break;
+                    default:
+                        throw new InvalidOperationException();
+                }
+
+                // set custom tooltip touch action
+                var detailButton = UIButton.FromType(UIButtonType.DetailDisclosure);
+                anView.RightCalloutAccessoryView = detailButton;
+            }
+            else
+            {
+                // show pin annotation
+                MKPinAnnotationView anView = (MKPinAnnotationView)mapView.DequeueReusableAnnotation(pId);
+                if (anView == null)
+                {
+                    anView = new MKPinAnnotationView(annotation, pId);
+                }
+                
+                ((MKPinAnnotationView)anView).PinColor = MKPinAnnotationColor.Green;
+                anView.CanShowCallout = true;
+            }
 			return anView;
 		}
 
 		public override async void CalloutAccessoryControlTapped (MKMapView mapView, MKAnnotationView view, UIControl control)
 		{
-			var point = (view.Annotation as StationAnnotation); 
+            /*
+             * LoadingOverlay loadingOverlay;
+             * loadingOverlay = new LoadingOverlay (UIScreen.MainScreen.Bounds);
+             * View.Add (loadingOverlay); // mapView.Add(loadingOverlay) ?
+             * loadingOverlay.Hide ();
+             */
+            var point = (view.Annotation as StationAnnotation); 
 			if (point != null) {
 				try {
 					var title = point.Model.Name;
