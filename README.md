@@ -11,4 +11,4 @@ Hope you enjoy it!
 
 The @WolkSoftwareLtd Team
 
-![iOS](http://i.imgur.com/CBCfRX4.jpg)
+![iOS](https://raw.github.com/WolkSoftwareLtd/DublinRTPI/gh-pages/media/README.png)
