@@ -4,6 +4,12 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
+.count{
+    width: 30px;
+    margin-right: 5px;
+    vertical-align: text-top;
+}
+
 .jumbotron, .well {
     background-color: #ccc;
     color: #333;
