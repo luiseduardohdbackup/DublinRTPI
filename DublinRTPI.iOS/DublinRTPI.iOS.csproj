@@ -111,6 +111,9 @@
     <Compile Include="Helpers\CustomMapDelegate.cs" />
     <Compile Include="Helpers\StationAnnotation.cs" />
     <Compile Include="Views\DublinBusViewController.cs" />
+    <Compile Include="Helpers\LoadingOverlay.cs" />
+    <Compile Include="Views\DublinBusRouteViewController.cs" />
+    <Compile Include="Helpers\DublinBusRoutesTableSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />

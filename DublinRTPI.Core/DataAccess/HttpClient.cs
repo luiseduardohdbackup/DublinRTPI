@@ -30,26 +30,17 @@ namespace DublinRTPI.Core.DataAccess
 			}
 			// send request
 			var uri = new Uri(url);
-            using (WebClient Client = new WebClient())
-            {
-                IWebProxy defaultWebProxy = WebRequest.DefaultWebProxy;
-                defaultWebProxy.Credentials = CredentialCache.DefaultCredentials;
-                Client.Proxy = defaultWebProxy;
-                return await Client.DownloadStringTaskAsync(uri);
-            }
+			var client = new HttpClient();
+			return await client.GetStringAsync(uri);
 		}
 
         public async Task<string> PostJson(string url, string body)
         {
-            using (WebClient Client = new WebClient())
-            {
-                IWebProxy defaultWebProxy = WebRequest.DefaultWebProxy;
-                defaultWebProxy.Credentials = CredentialCache.DefaultCredentials;
-                Client.Proxy = defaultWebProxy;
-                Client.Headers.Add(HttpRequestHeader.ContentType, "application/json; charset=UTF-8");
-                return await Client.UploadStringTaskAsync(url, body);
-            }
-
+			var uri = new Uri(url);
+			var client = new HttpClient();
+			var content = new StringContent (body, Encoding.UTF8, "application/json");
+			var response = await client.PostAsync (uri, content);
+			return await response.Content.ReadAsStringAsync ();
         }
 	}
 }

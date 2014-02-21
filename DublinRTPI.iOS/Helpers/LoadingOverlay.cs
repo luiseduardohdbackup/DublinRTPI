@@ -1,4 +1,13 @@
-﻿public class LoadingOverlay : UIView
+﻿using MonoTouch.UIKit;
+using System.Drawing;
+using System;
+using MonoTouch.Foundation;
+using MonoTouch.MapKit;
+using DublinRTPI.Core.Entities;
+using DublinRTPI.iOS.Helpers;
+using MonoTouch.CoreLocation;
+
+public class LoadingOverlay : UIView
 {
     // control declarations
     UIActivityIndicatorView activitySpinner;

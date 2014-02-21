@@ -7,13 +7,13 @@ namespace DublinRTPI.Core.Entities
 	{
 		public string Id;
 		public string Name;
-		public List<Station> Stations;
+
+		public Route(){}
 
 		public Route (string id, string name)
 		{
 			this.Id = id;
 			this.Name = name;
-			this.Stations = new List<Station>();
 		}
 	}
 }

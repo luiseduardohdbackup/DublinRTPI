@@ -33,7 +33,7 @@ namespace DublinRTPI.iOS.Helpers
                 return null;
             }
 
-            if (view is StationAnnotation)
+			if (annotation is StationAnnotation)
             {
                 // save resoureces
                 MKPinAnnotationView anView = (MKPinAnnotationView)mapView.DequeueReusableAnnotation(sId);
@@ -67,6 +67,7 @@ namespace DublinRTPI.iOS.Helpers
                 // set custom tooltip touch action
                 var detailButton = UIButton.FromType(UIButtonType.DetailDisclosure);
                 anView.RightCalloutAccessoryView = detailButton;
+				return anView;
             }
             else
             {
@@ -79,8 +80,8 @@ namespace DublinRTPI.iOS.Helpers
                 
                 ((MKPinAnnotationView)anView).PinColor = MKPinAnnotationColor.Green;
                 anView.CanShowCallout = true;
+				return anView;
             }
-			return anView;
 		}
 
 		public override async void CalloutAccessoryControlTapped (MKMapView mapView, MKAnnotationView view, UIControl control)

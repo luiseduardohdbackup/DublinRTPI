@@ -13,9 +13,11 @@ namespace DublinRTPI.iOS.Views
 	{
 		public MKMapView Map;
 		public MapActionsHelper MapActionsHelper;
+		public string RouteId;
 
-		public DublinBusViewController()
+		public DublinBusViewController(string routeId)
 		{
+			this.RouteId = routeId;
 			this.Title = "DUBLIN RTPI";
 			this.Map = new MKMapView(UIScreen.MainScreen.Bounds);
 			this.MapActionsHelper = new MapActionsHelper(this.Map, ServiceProviderEnum.DublinBus);
@@ -27,7 +29,7 @@ namespace DublinRTPI.iOS.Views
 
 		public async void DisplayStations()
 		{
-			this.MapActionsHelper.DisplayStations();
+			this.MapActionsHelper.DisplayDisplayStationsByRoute(this.RouteId);
 		}
 
 		public override void DidReceiveMemoryWarning ()

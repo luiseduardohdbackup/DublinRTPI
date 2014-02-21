@@ -24,7 +24,7 @@ namespace DublinRTPI.iOS.Helpers
 			this.DataController = new DataController();
 			this._service = service;
 			this._map.Delegate = new CustomMapDelegate(this._service, this.DataController);
-			//this._map.ShowsUserLocation = true;
+			this._map.ShowsUserLocation = true;
 			this._map.ZoomEnabled = true;
 			this._map.ScrollEnabled = true;
 			//Enable 3D buildings (only when executed on device)
@@ -62,6 +62,11 @@ namespace DublinRTPI.iOS.Helpers
 
 		public async void DisplayStations(){
 			var stations = await this.DataController.GetStations(this._service);
+			stations.ForEach( station => this.AddStationMarker(station) );
+		}
+
+		public async void DisplayDisplayStationsByRoute(string routeID){
+			var stations = await this.DataController.GetStationsByRoute(this._service, routeID);
 			stations.ForEach( station => this.AddStationMarker(station) );
 		}
 	}

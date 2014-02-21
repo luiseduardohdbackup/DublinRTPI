@@ -19,7 +19,8 @@ namespace DublinRTPI.iOS
 		LuasViewController luasView;
 		TrainViewController trainView;
 		BikeViewController bikeView;
-		DublinBusViewController busView;
+		//DublinBusViewController busView;
+		DublinBusRouteViewController busView;
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this
 		// method you should instantiate the window, load the UI into it and then make the window
@@ -35,7 +36,8 @@ namespace DublinRTPI.iOS
 			this.luasView = new LuasViewController();
 			this.trainView = new TrainViewController ();
 			this.bikeView = new BikeViewController();
-			this.busView = new DublinBusViewController();
+			//this.busView = new DublinBusViewController();
+			this.busView = new DublinBusRouteViewController();
 
 			tabBarController = new UITabBarController ();
 			tabBarController.ViewControllers = new UIViewController[]{ 
@@ -67,7 +69,7 @@ namespace DublinRTPI.iOS
 					this.bikeView.DisplayStations();
 					break;
 				case "Dublin Bus":
-					this.busView.DisplayStations();
+					//this.busView.DisplayStations();
 					break;
 				default:
 					throw new InvalidOperationException();

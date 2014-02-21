@@ -63,13 +63,19 @@ namespace DublinRTPI.Core.EndPointParser
 		}
 
 		public List<Station> ParseStations(string json){
-			var stations = new List<Station> ();
-			var o = JObject.Parse(json);
-			var stationsJson = o ["value"]["items"][0]["markers"] ["marker"].Children<JObject>();
-			foreach(var station in stationsJson){
-				stations.Add(this.ParseStation(station.ToString()));
+			try {
+				var stations = new List<Station> ();
+				var o = JObject.Parse(json);
+				var stationsJson = o["value"]["items"][0]["markers"]["marker"].Children<JObject>();
+				foreach(var station in stationsJson){
+					stations.Add(this.ParseStation(station.ToString()));
+				}
+				return stations;
 			}
-			return stations;
+			catch(Exception ex)
+			{
+				return new List<Station>();
+			}
 		}
 
 		public List<Route> ParseRoutes(string json) {
