@@ -33,8 +33,7 @@ namespace DublinRTPI.iOS
 		{
 			var routeId = tableItems [indexPath.Row].Id;
 			var mapView = new DublinBusViewController(routeId);
-			(this.parent as UINavigationController).PushViewController(mapView, true);
-			mapView.DisplayStations();
+			this.parent.PushViewController(mapView, true);
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)

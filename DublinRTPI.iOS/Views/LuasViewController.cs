@@ -17,18 +17,14 @@ namespace DublinRTPI.iOS.Views
 		public LuasViewController()
 		{
 			this.Title = "DUBLIN RTPI";
-			this.Map = new MKMapView(UIScreen.MainScreen.Bounds);
-			this.MapActionsHelper = new MapActionsHelper(this.Map, ServiceProviderEnum.Luas);
-			this.View = this.Map;
 			this.TabBarItem = new UITabBarItem();
 			this.TabBarItem.Title = "Luas";
 			this.TabBarItem.Image = UIImage.FromFile("luas.png");
-			this.DisplayStations();
 		}
 
-		public async void DisplayStations()
+		public async Task<bool> DisplayStations()
 		{
-			this.MapActionsHelper.DisplayStations();
+			return await this.MapActionsHelper.DisplayStations();
 		}
 
 		public override void DidReceiveMemoryWarning ()
@@ -38,10 +34,15 @@ namespace DublinRTPI.iOS.Views
 			// Release any cached data, images, etc that aren't in use.
 		}
 
-		public override void ViewDidLoad ()
+		public async override void ViewDidLoad()
 		{
-			base.ViewDidLoad ();
-			// Perform any additional setup after loading the view, typically from a nib.
+			base.ViewDidLoad();
+			var tabBarController = ((AppDelegate)UIApplication.SharedApplication.Delegate).tabBarController;
+			tabBarController.TabBar.Hidden = false;
+			this.Map = new MKMapView(UIScreen.MainScreen.Bounds);
+			this.MapActionsHelper = new MapActionsHelper(this.Map, ServiceProviderEnum.Luas);
+			this.View = this.Map;
+			await DisplayStations();
 		}
 	}
 }

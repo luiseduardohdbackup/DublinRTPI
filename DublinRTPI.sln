@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DublinRTPI.Android", "Dubli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DublinRTPI.iOS", "DublinRTPI.iOS\DublinRTPI.iOS.csproj", "{D8436200-186B-4437-8F56-EDCFC660B0C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DublinRTPI.Dev", "DublinRTPI.Dev\DublinRTPI.Dev.csproj", "{ECA94B40-A7F3-4071-96C9-9691A62EC43F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,22 +67,6 @@ Global
 		{D8436200-186B-4437-8F56-EDCFC660B0C4}.Release|iPhone.Build.0 = Release|iPhone
 		{D8436200-186B-4437-8F56-EDCFC660B0C4}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{D8436200-186B-4437-8F56-EDCFC660B0C4}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
-		{ECA94B40-A7F3-4071-96C9-9691A62EC43F}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
-		{ECA94B40-A7F3-4071-96C9-9691A62EC43F}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
-		{ECA94B40-A7F3-4071-96C9-9691A62EC43F}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
-		{ECA94B40-A7F3-4071-96C9-9691A62EC43F}.AppStore|iPhone.Build.0 = Debug|Any CPU
-		{ECA94B40-A7F3-4071-96C9-9691A62EC43F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ECA94B40-A7F3-4071-96C9-9691A62EC43F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ECA94B40-A7F3-4071-96C9-9691A62EC43F}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{ECA94B40-A7F3-4071-96C9-9691A62EC43F}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{ECA94B40-A7F3-4071-96C9-9691A62EC43F}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{ECA94B40-A7F3-4071-96C9-9691A62EC43F}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{ECA94B40-A7F3-4071-96C9-9691A62EC43F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ECA94B40-A7F3-4071-96C9-9691A62EC43F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ECA94B40-A7F3-4071-96C9-9691A62EC43F}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{ECA94B40-A7F3-4071-96C9-9691A62EC43F}.Release|iPhone.Build.0 = Release|Any CPU
-		{ECA94B40-A7F3-4071-96C9-9691A62EC43F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{ECA94B40-A7F3-4071-96C9-9691A62EC43F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = DublinRTPI.iOS\DublinRTPI.iOS.csproj

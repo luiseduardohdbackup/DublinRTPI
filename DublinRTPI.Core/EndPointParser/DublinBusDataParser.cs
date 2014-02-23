@@ -57,12 +57,13 @@ namespace DublinRTPI.Core.EndPointParser
                             StringSplitOptions.RemoveEmptyEntries
                         );
 
-                        station.TimeUpdates.Add(new TimeUpdate()
-                        {
-                            Time = details[5].Replace("\r\n", String.Empty).Replace(" ", String.Empty),
-                            Destination = details[3].Replace("\r\n", String.Empty).Replace(" ", String.Empty),
-                            Traincode = details[1].Replace("\r\n", String.Empty).Replace(" ", String.Empty)
-                        });
+						var timeUpdate = new TimeUpdate() 
+						{
+							Time = details[5].Replace("\r\n", String.Empty).Trim(),
+							Destination = details[3].Replace("\r\n", String.Empty).Trim(),
+							Traincode = details[1].Replace("\r\n", String.Empty).Trim()
+						};
+						station.TimeUpdates.Add(timeUpdate);
                     }
                 }
                 return station;
@@ -76,7 +77,7 @@ namespace DublinRTPI.Core.EndPointParser
             var o = JObject.Parse(json);
             return new Station()
             {
-                Id = o["StopRef"].ToString(), //PublicAccessCode
+				Id = o["StopRef"].ToString(), //PublicAccessCode
                 Name = o["StopNameShort"].ToString(),
                 Longitude = Double.Parse(o["Longitude"].ToString()),
                 Latitude = Double.Parse(o["Latitude"].ToString()),

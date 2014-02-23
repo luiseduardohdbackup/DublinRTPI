@@ -19,17 +19,14 @@ namespace DublinRTPI.iOS.Views
 		{
 			this.RouteId = routeId;
 			this.Title = "DUBLIN RTPI";
-			this.Map = new MKMapView(UIScreen.MainScreen.Bounds);
-			this.MapActionsHelper = new MapActionsHelper(this.Map, ServiceProviderEnum.DublinBus);
-			this.View = this.Map;
 			this.TabBarItem = new UITabBarItem();
 			this.TabBarItem.Title = "Dublin Bus";
 			this.TabBarItem.Image = UIImage.FromFile("bus.png");
 		}
 
-		public async void DisplayStations()
+		public async Task<bool> DisplayStations()
 		{
-			this.MapActionsHelper.DisplayDisplayStationsByRoute(this.RouteId);
+			return await this.MapActionsHelper.DisplayDisplayStationsByRoute(this.RouteId);
 		}
 
 		public override void DidReceiveMemoryWarning ()
@@ -39,10 +36,15 @@ namespace DublinRTPI.iOS.Views
 			// Release any cached data, images, etc that aren't in use.
 		}
 
-		public override void ViewDidLoad ()
+		public async override void ViewDidLoad ()
 		{
-			base.ViewDidLoad ();
-			// Perform any additional setup after loading the view, typically from a nib.
+			base.ViewDidLoad();
+			var tabBarController = ((AppDelegate)UIApplication.SharedApplication.Delegate).tabBarController;
+			tabBarController.TabBar.Hidden = false;
+			this.Map = new MKMapView(UIScreen.MainScreen.Bounds);
+			this.MapActionsHelper = new MapActionsHelper(this.Map, ServiceProviderEnum.DublinBus);
+			this.View = this.Map;
+			await DisplayStations();
 		}
 	}
 }

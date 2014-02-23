@@ -43,28 +43,63 @@ namespace DublinRTPI.Core
 		}
 
 		public async Task<Boolean> IsServiceAvailable(ServiceProviderEnum serviceProvider){
-			var dataProvider = this.GetEnpointByDataProviderType(serviceProvider);
-			return await dataProvider.IsDataServiceOnline();
+			try
+			{
+				var dataProvider = this.GetEnpointByDataProviderType(serviceProvider);
+				return await dataProvider.IsDataServiceOnline();
+			}
+			catch(Exception)
+			{
+				return false;
+			}
 		}
 
 		public async Task<List<Station>> GetStations(ServiceProviderEnum serviceProvider){
-			var dataProvider = this.GetEnpointByDataProviderType(serviceProvider);
-			return await dataProvider.GetStations();
+			try
+			{
+				var dataProvider = this.GetEnpointByDataProviderType(serviceProvider);
+				return await dataProvider.GetStations();
+			}
+			catch(Exception)
+			{
+				return new List<Station>();
+			}
 		}
 
 		public async Task<Station> GetStationDetails(ServiceProviderEnum serviceProvider, string stationId){
-			var dataProvider = this.GetEnpointByDataProviderType(serviceProvider);
-			return await dataProvider.GetStationDetails(stationId);
+			try
+			{
+				var dataProvider = this.GetEnpointByDataProviderType(serviceProvider);
+				return await dataProvider.GetStationDetails(stationId);
+			}
+			catch(Exception)
+			{
+				return new Station();
+			}
 		}
 
 		public async Task<List<Route>> GetRoutes(ServiceProviderEnum serviceProvider){
-			var dataProvider = this.GetEnpointByDataProviderType(serviceProvider);
-			return await dataProvider.GetRoutes();
+			try
+			{
+				var dataProvider = this.GetEnpointByDataProviderType(serviceProvider);
+				return await dataProvider.GetRoutes();
+			}
+			catch(Exception)
+			{
+				return new List<Route>();
+			}
 		}
 
 		public async Task<List<Station>> GetStationsByRoute(ServiceProviderEnum serviceProvider, string routeId){
-			var dataProvider = this.GetEnpointByDataProviderType(serviceProvider);
-			return await dataProvider.GetStationsByRoute(routeId);
+			try
+			{
+				var dataProvider = this.GetEnpointByDataProviderType(serviceProvider);
+				return await dataProvider.GetStationsByRoute(routeId);
+			}
+			catch(Exception)
+			{
+				return new List<Station>();
+			}
 		}
 	}
 }

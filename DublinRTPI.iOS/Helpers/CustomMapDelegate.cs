@@ -23,11 +23,6 @@ namespace DublinRTPI.iOS.Helpers
 
 		public override MKAnnotationView GetViewForAnnotation (MKMapView mapView, NSObject annotation)
 		{
-
-            /*
-             * https://github.com/xamarin/Seminars/blob/master/2012-07-12-MapKit/MapDemo/MapDemo/MapDemoViewController.cs#L67
-             */
-
             if (annotation is MKUserLocation)
             {
                 return null;
@@ -43,7 +38,8 @@ namespace DublinRTPI.iOS.Helpers
                 }
 
                 anView.CanShowCallout = true;
-                // anView.Image = UIImage.FromFile("marker.png");
+				//anView.Image = UIImage.FromFile("pin.png");
+				anView.PinColor = MKPinAnnotationColor.Red;
 
                 // set custom marker and tooltip image
                 switch (this.service)
@@ -78,7 +74,7 @@ namespace DublinRTPI.iOS.Helpers
                     anView = new MKPinAnnotationView(annotation, pId);
                 }
                 
-                ((MKPinAnnotationView)anView).PinColor = MKPinAnnotationColor.Green;
+				anView.PinColor = MKPinAnnotationColor.Green;
                 anView.CanShowCallout = true;
 				return anView;
             }
@@ -86,15 +82,12 @@ namespace DublinRTPI.iOS.Helpers
 
 		public override async void CalloutAccessoryControlTapped (MKMapView mapView, MKAnnotationView view, UIControl control)
 		{
-            /*
-             * LoadingOverlay loadingOverlay;
-             * loadingOverlay = new LoadingOverlay (UIScreen.MainScreen.Bounds);
-             * View.Add (loadingOverlay); // mapView.Add(loadingOverlay) ?
-             * loadingOverlay.Hide ();
-             */
+			LoadingOverlay loadingOverlay = new LoadingOverlay (UIScreen.MainScreen.Bounds);
             var point = (view.Annotation as StationAnnotation); 
 			if (point != null) {
 				try {
+					var key = ((AppDelegate)UIApplication.SharedApplication.Delegate).window;
+					key.Add(loadingOverlay);
 					var title = point.Model.Name;
 					var details = await this.DataController.GetStationDetails(this.service, point.Model.Id);
 
@@ -118,16 +111,19 @@ namespace DublinRTPI.iOS.Helpers
 					}
 
 					var alert = new UIAlertView (title, status, null, "OK", null);
+					loadingOverlay.Hide();
 					alert.Show();
 				}
 				catch(Exception){
 					var alert = new UIAlertView ("Error", "Sorry there has been an error.", null, "OK", null);
+					loadingOverlay.Hide();
 					alert.Show();
 				}
 			} 
 			else 
 			{
 				var alert = new UIAlertView ("Error", "Sorry there has been an error.", null, "OK", null);
+				loadingOverlay.Hide();
 				alert.Show();
 			}
 		}

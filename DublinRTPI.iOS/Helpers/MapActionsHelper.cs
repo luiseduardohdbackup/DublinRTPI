@@ -60,14 +60,16 @@ namespace DublinRTPI.iOS.Helpers
 			this._map.AddAnnotation(marker);
 		}
 
-		public async void DisplayStations(){
+		public async Task<bool> DisplayStations(){
 			var stations = await this.DataController.GetStations(this._service);
-			stations.ForEach( station => this.AddStationMarker(station) );
+			stations.ForEach(station => this.AddStationMarker(station));
+			return true;
 		}
 
-		public async void DisplayDisplayStationsByRoute(string routeID){
+		public async Task<bool> DisplayDisplayStationsByRoute(string routeID){
 			var stations = await this.DataController.GetStationsByRoute(this._service, routeID);
-			stations.ForEach( station => this.AddStationMarker(station) );
+			stations.ForEach(station => this.AddStationMarker(station));
+			return true;
 		}
 	}
 }
