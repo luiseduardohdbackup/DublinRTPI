@@ -20,7 +20,7 @@ namespace DublinRTPI.iOS.Views
 			this.Title = "DUBLIN RTPI";
 			this.TabBarItem = new UITabBarItem();
 			this.TabBarItem.Title = "Dublin Bike";
-			this.TabBarItem.Image = UIImage.FromFile("bike.png");
+			this.TabBarItem.Image = UIImage.FromBundle("bike");
 		}
 
 		public async Task<bool> DisplayStations()

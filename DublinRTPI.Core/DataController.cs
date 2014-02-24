@@ -74,7 +74,7 @@ namespace DublinRTPI.Core
 			}
 			catch(Exception)
 			{
-				return new Station();
+				return null;
 			}
 		}
 

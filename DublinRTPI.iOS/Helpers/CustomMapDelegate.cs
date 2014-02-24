@@ -90,39 +90,64 @@ namespace DublinRTPI.iOS.Helpers
 					key.Add(loadingOverlay);
 					var title = point.Model.Name;
 					var details = await this.DataController.GetStationDetails(this.service, point.Model.Id);
-
-					var status = "";
-					// time
-					if (details.TimeUpdates != null) {
-						details.TimeUpdates.ForEach (
-							u => status += String.Format ("{0} {1}\n", u.Destination, u.Time)
-						);
-						if(details.TimeUpdates.Count == 0){
-							status += "There are no time updates available at this time";
+					if(details != null)
+					{
+						var status = "";
+						// time
+						if (details.TimeUpdates != null) {
+							details.TimeUpdates.ForEach (
+								u => status += String.Format ("{0} {1}\n", u.Destination, u.Time)
+							);
+							if(details.TimeUpdates.Count == 0){
+								status += "There are no time updates available at this time";
+							}
 						}
-					}
 
-					// bikes
-					if(details.VehicleAvailabilityUpdate != null){
-						status += String.Format ("Total : {0}\n Available : {1}",
-							details.VehicleAvailabilityUpdate.Total,
-							details.VehicleAvailabilityUpdate.Available
+						// bikes
+						if(details.VehicleAvailabilityUpdate != null){
+							status += String.Format ("Total : {0}\n Available : {1}",
+								details.VehicleAvailabilityUpdate.Total,
+								details.VehicleAvailabilityUpdate.Available
+							);
+						}
+
+						var alert = new UIAlertView (title, status, null, "OK", null);
+						loadingOverlay.Hide();
+						alert.Show();
+					}
+					else{
+						var msg = String.Format(
+							"{0}, {1}. {2}",
+							"Sorry we could not connect to the real-time information provider",
+							"please try again later",
+							"Report to info@wolksoftware.com if the issue presist."
 						);
+						var alert = new UIAlertView ("Error", msg, null, "OK", null);
+						loadingOverlay.Hide();
+						alert.Show();
 					}
-
-					var alert = new UIAlertView (title, status, null, "OK", null);
-					loadingOverlay.Hide();
-					alert.Show();
 				}
 				catch(Exception){
-					var alert = new UIAlertView ("Error", "Sorry there has been an error.", null, "OK", null);
+					var msg = String.Format(
+						"{0}, {1}. {2}",
+						"Sorry there has been an error",
+						"please try again later",
+						"Report to info@wolksoftware.com if the issue presist."
+					);
+					var alert = new UIAlertView ("Error", msg, null, "OK", null);
 					loadingOverlay.Hide();
 					alert.Show();
 				}
 			} 
 			else 
 			{
-				var alert = new UIAlertView ("Error", "Sorry there has been an error.", null, "OK", null);
+				var msg = String.Format(
+					"{0}, {1}. {2}",
+					"Sorry there has been an error",
+					"please try again later",
+					"Report to info@wolksoftware.com if the issue presist."
+				);
+				var alert = new UIAlertView ("Error", msg, null, "OK", null);
 				loadingOverlay.Hide();
 				alert.Show();
 			}

@@ -44,11 +44,24 @@ namespace DublinRTPI.iOS
 			this.tableItems = await dataController.GetRoutes(
 				ServiceProviderEnum.DublinBus
 			);
-			table.Source = new DublinBusRoutesTableSource(
-				tableItems,
-				this.ParentViewController as UINavigationController
-			);
-			Add(table);
+			if (tableItems.Count > 0) {
+				table.Source = new DublinBusRoutesTableSource (
+					tableItems,
+					this.ParentViewController as UINavigationController
+				);
+				Add (table);
+			} 
+			else 
+			{
+				var msg = String.Format(
+					"{0}, {1}. {2}",
+					"Sorry we could not connect to the real-time information provider",
+					"please try again later",
+					"Report to info@wolksoftware.com if the issue presist."
+				);
+				var alert = new UIAlertView ("Error", msg, null, "OK", null);
+				alert.Show();
+			}
 		}
 
 		public override void ViewWillAppear (bool animated)
