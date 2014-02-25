@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DublinRTPI.Core", "DublinRTPI.Core\DublinRTPI.Core.csproj", "{C8BB59A9-9620-4248-8CC1-1E40A8365B74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DublinRTPI.Android", "DublinRTPI.Android\DublinRTPI.Android.csproj", "{867EE59C-F83F-403A-8BC1-4B5DE05AD314}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DublinRTPI.iOS", "DublinRTPI.iOS\DublinRTPI.iOS.csproj", "{D8436200-186B-4437-8F56-EDCFC660B0C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DublinRTPI.Android", "DublinRTPI.Android\DublinRTPI.Android.csproj", "{88E76A95-CC59-4069-ACBA-0B906927E1FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,22 +19,22 @@ Global
 		AppStore|iPhone = AppStore|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{867EE59C-F83F-403A-8BC1-4B5DE05AD314}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
-		{867EE59C-F83F-403A-8BC1-4B5DE05AD314}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
-		{867EE59C-F83F-403A-8BC1-4B5DE05AD314}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
-		{867EE59C-F83F-403A-8BC1-4B5DE05AD314}.AppStore|iPhone.Build.0 = Debug|Any CPU
-		{867EE59C-F83F-403A-8BC1-4B5DE05AD314}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{867EE59C-F83F-403A-8BC1-4B5DE05AD314}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{867EE59C-F83F-403A-8BC1-4B5DE05AD314}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{867EE59C-F83F-403A-8BC1-4B5DE05AD314}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{867EE59C-F83F-403A-8BC1-4B5DE05AD314}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{867EE59C-F83F-403A-8BC1-4B5DE05AD314}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{867EE59C-F83F-403A-8BC1-4B5DE05AD314}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{867EE59C-F83F-403A-8BC1-4B5DE05AD314}.Release|Any CPU.Build.0 = Release|Any CPU
-		{867EE59C-F83F-403A-8BC1-4B5DE05AD314}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{867EE59C-F83F-403A-8BC1-4B5DE05AD314}.Release|iPhone.Build.0 = Release|Any CPU
-		{867EE59C-F83F-403A-8BC1-4B5DE05AD314}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{867EE59C-F83F-403A-8BC1-4B5DE05AD314}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{88E76A95-CC59-4069-ACBA-0B906927E1FC}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{88E76A95-CC59-4069-ACBA-0B906927E1FC}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{88E76A95-CC59-4069-ACBA-0B906927E1FC}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{88E76A95-CC59-4069-ACBA-0B906927E1FC}.AppStore|iPhone.Build.0 = Release|Any CPU
+		{88E76A95-CC59-4069-ACBA-0B906927E1FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88E76A95-CC59-4069-ACBA-0B906927E1FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88E76A95-CC59-4069-ACBA-0B906927E1FC}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{88E76A95-CC59-4069-ACBA-0B906927E1FC}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{88E76A95-CC59-4069-ACBA-0B906927E1FC}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{88E76A95-CC59-4069-ACBA-0B906927E1FC}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{88E76A95-CC59-4069-ACBA-0B906927E1FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88E76A95-CC59-4069-ACBA-0B906927E1FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88E76A95-CC59-4069-ACBA-0B906927E1FC}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{88E76A95-CC59-4069-ACBA-0B906927E1FC}.Release|iPhone.Build.0 = Release|Any CPU
+		{88E76A95-CC59-4069-ACBA-0B906927E1FC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{88E76A95-CC59-4069-ACBA-0B906927E1FC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{C8BB59A9-9620-4248-8CC1-1E40A8365B74}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
 		{C8BB59A9-9620-4248-8CC1-1E40A8365B74}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
 		{C8BB59A9-9620-4248-8CC1-1E40A8365B74}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
@@ -69,6 +69,6 @@ Global
 		{D8436200-186B-4437-8F56-EDCFC660B0C4}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = DublinRTPI.iOS\DublinRTPI.iOS.csproj
+		StartupItem = DublinRTPI.Android\DublinRTPI.Android.csproj
 	EndGlobalSection
 EndGlobal

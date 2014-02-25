@@ -1,53 +1,61 @@
-﻿using Android.App;
+﻿using System;
+using Android.App;
+using Android.Content;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
 using Android.OS;
-using Android.Util;
 
-namespace com.xamarin.example.actionbar.tabs
+namespace DublinRTPI.Android
 {
-    [Activity(Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/ic_launcher")]
-    public class MainActivity : Activity
-    {
-        static readonly string Tag = "ActionBarTabsSupport";
+	[Activity (Label = "DublinRTPI.Android", MainLauncher = true)]
+	public class MainActivity : Activity
+	{
+		int count = 1;
 
-        Fragment[] _fragments;
+		protected override void OnCreate (Bundle bundle)
+		{
+			base.OnCreate (bundle);
 
-        protected override void OnCreate(Bundle bundle)
-        {
-            base.OnCreate(bundle);
+			// Set our view from the "main" layout resource
+			ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
+			SetContentView (Resource.Layout.Main);
 
-			//SetContentView(Resource.Layout.Main);
+			// Tab 1
+			ActionBar.Tab tab1 = ActionBar.NewTab();
+			tab1.SetText(Resources.GetString(Resource.String.tab1));
+			//tab.SetIcon(Resource.Drawable.tab1_icon);
+			tab1.TabSelected += (sender, args) => {
+				Console.WriteLine (1);
+			};
+			ActionBar.AddTab(tab1);
 
-            ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
-			//SetContentView(Resource.Layout.Main);
+			// Tab 2
+			ActionBar.Tab tab2 = ActionBar.NewTab();
+			tab2.SetText(Resources.GetString(Resource.String.tab2));
+			//tab.SetIcon(Resource.Drawable.tab1_icon);
+			tab2.TabSelected += (sender, args) => {
+				Console.WriteLine (2);
+			};
+			ActionBar.AddTab(tab2);
 
-            _fragments = new Fragment[]
-                         {
-                             new WhatsOnFragment(),
-                             new SpeakersFragment(),
-                             new SessionsFragment()
-                         };
+			// Tab 3
+			ActionBar.Tab tab3 = ActionBar.NewTab();
+			tab3.SetText(Resources.GetString(Resource.String.tab3));
+			//tab.SetIcon(Resource.Drawable.tab1_icon);
+			tab3.TabSelected += (sender, args) => {
+				Console.WriteLine (3);
+			};
+			ActionBar.AddTab(tab3);
 
-			//AddTabToActionBar(Resource.String.tab1, Resource.Drawable.icon);
-			//AddTabToActionBar(Resource.String.tab2, Resource.Drawable.icon);
-			//AddTabToActionBar(Resource.String.tab3, Resource.Drawable.icon);
-        }
-
-        void AddTabToActionBar(int labelResourceId, int iconResourceId)
-        {
-            ActionBar.Tab tab = ActionBar.NewTab()
-                                         .SetText(labelResourceId)
-                                         .SetIcon(iconResourceId);
-            tab.TabSelected += TabOnTabSelected;
-            ActionBar.AddTab(tab);
-        }
-
-        void TabOnTabSelected(object sender, ActionBar.TabEventArgs tabEventArgs)
-        {
-            ActionBar.Tab tab = (ActionBar.Tab)sender;
-
-            Log.Debug(Tag, "The tab {0} has been selected.", tab.Text);
-            Fragment frag = _fragments[tab.Position];
-			//tabEventArgs.FragmentTransaction.Replace(Resource.Id.frameLayout1, frag);
-        }
-    }
+			// Tab 4
+			ActionBar.Tab tab4 = ActionBar.NewTab();
+			tab4.SetText(Resources.GetString(Resource.String.tab4));
+			//tab.SetIcon(Resource.Drawable.tab1_icon);
+			tab4.TabSelected += (sender, args) => {
+				Console.WriteLine (4);
+			};
+			ActionBar.AddTab(tab4);
+		}
+	}
 }

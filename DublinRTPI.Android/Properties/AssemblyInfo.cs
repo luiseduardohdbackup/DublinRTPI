@@ -7,9 +7,9 @@ using Android.App;
 [assembly: AssemblyTitle ("DublinRTPI.Android")]
 [assembly: AssemblyDescription ("")]
 [assembly: AssemblyConfiguration ("")]
-[assembly: AssemblyCompany ("")]
+[assembly: AssemblyCompany ("Wolk Software Limited")]
 [assembly: AssemblyProduct ("")]
-[assembly: AssemblyCopyright ("remojansen")]
+[assembly: AssemblyCopyright ("Wolk Software Limited")]
 [assembly: AssemblyTrademark ("")]
 [assembly: AssemblyCulture ("")]
 // The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".

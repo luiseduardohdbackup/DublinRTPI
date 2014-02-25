@@ -60,48 +60,11 @@ namespace DublinRTPI.Android
 			}
 		}
 		
-		public partial class Id
-		{
-			
-			// aapt resource value: 0x7f060006
-			public const int imageView1 = 2131099654;
-			
-			// aapt resource value: 0x7f060001
-			public const int linearLayout1 = 2131099649;
-			
-			// aapt resource value: 0x7f060002
-			public const int linearLayout2 = 2131099650;
-			
-			// aapt resource value: 0x7f060003
-			public const int linearLayout3 = 2131099651;
-			
-			// aapt resource value: 0x7f060004
-			public const int linearLayout4 = 2131099652;
-			
-			// aapt resource value: 0x7f060000
-			public const int tabHost1 = 2131099648;
-			
-			// aapt resource value: 0x7f060005
-			public const int textView1 = 2131099653;
-			
-			static Id()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Id()
-			{
-			}
-		}
-		
 		public partial class Layout
 		{
 			
 			// aapt resource value: 0x7f030000
 			public const int Main = 2130903040;
-			
-			// aapt resource value: 0x7f030001
-			public const int simple_fragment = 2130903041;
 			
 			static Layout()
 			{
