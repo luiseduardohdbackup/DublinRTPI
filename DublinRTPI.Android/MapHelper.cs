@@ -30,16 +30,16 @@ namespace DublinRTPI.Android
 			int zoom = 18;
 			if (provider == ServiceProviderEnum.DublinBike) {
 				location = new LatLng (53.3479095, -6.2559231);
-				zoom = 18; //10000
+				zoom = 18; // TODO 10000
 			}
 			else if(provider == ServiceProviderEnum.IrishRail)
 			{
 				location = new LatLng (53.3479095, -6.2559231);
-				zoom = 18; //60000
+				zoom = 18; //TODO 60000
 			}
 			else if(provider == ServiceProviderEnum.Luas)
 			{
-				zoom = 18; // 25000
+				zoom = 18; //TODO 25000
 				location = new LatLng (53.3162064, -6.2672187);
 			}
 			CameraPosition.Builder builder = CameraPosition.InvokeBuilder();
@@ -62,10 +62,12 @@ namespace DublinRTPI.Android
 			this._map.AddMarker(marker);
 		}
 
-		public async Task<bool> DisplayRoutes(ServiceProviderEnum provider){
+		public async Task<bool> DisplayRoutes(ServiceProviderEnum provider, Activity mainActivity){
 			var routes = await this._dataController.GetRoutes (provider);
 			if (routes.Count > 0) {
-				// TODO display route list
+				var busRouteViewActivity = new Intent(mainActivity, typeof(BusRouteViewActivity));
+				//busRouteViewActivity.PutExtra("routes",  routes);
+				mainActivity.StartActivity(busRouteViewActivity);
 				return true;
 			} 
 			else 

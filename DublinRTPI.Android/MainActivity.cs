@@ -82,7 +82,7 @@ namespace DublinRTPI.Android
 			tab4.SetText(Resources.GetString(Resource.String.tab4));
 			//tab.SetIcon(Resource.Drawable.tab1_icon);
 			tab4.TabSelected += async (sender, args) => {
-				var ok = await this._mapHelper.DisplayRoutes(ServiceProviderEnum.DublinBus);
+				var ok = await this._mapHelper.DisplayRoutes(ServiceProviderEnum.DublinBus, this);
 				if(!ok){
 					// TODO Let user know there was a connection error
 				}
